@@ -1,3 +1,10 @@
 footer {
     background-color: rgb(119, 0, 24);
+    .copyright {
+        padding: 0.5rem;
+        text-align: center;
+        p {
+            display: inline;
+        }
+    }
 }
