@@ -1,12 +1,18 @@
-var tope = prompt("Indiquenos su presupuesto: ");
-var totalCompra = 0;
+/* var tope = prompt("Indiquenos su presupuesto: ");
+var totalCompra = 0; */
 
 function Presupuesto() {
     this.producto = [];
 
-    this.agregarproducto = function (producto) {
-        this.producto.push(producto);
-        alert("Agregado al presupuesto");
+    this.agregarproducto = function (item) {
+        this.producto.push(item);
+        localStorage.setItem("lista", JSON.stringify(this.producto));
+        /* alert("Agregado al presupuesto"); */
+    };
+
+    this.base = function () {
+        if (localStorage.getItem("lista") != null)
+            this.producto = JSON.parse(localStorage.getItem("lista"));
     };
 }
 
@@ -16,7 +22,15 @@ function Componente(tip, mar, cant) {
     this.cantidad = cant;
 }
 
-var tipo;
+var presupuesto = new Presupuesto();
+var compo = new Componente("mother", "asus", 1);
+
+presupuesto.base();
+presupuesto.agregarproducto(compo);
+
+console.log(presupuesto.producto);
+
+/* var tipo;
 var marca;
 var cantidad;
 var componente;
@@ -68,4 +82,4 @@ while (tope >= totalCompra && sigoCargando == true) {
 
 console.log(presupuesto);
 console.log(typeof presupuesto);
-alert("Dinero gastado: " + totalCompra);
+alert("Dinero gastado: " + totalCompra); */
