@@ -37,7 +37,7 @@ function Comparar(lista, valor) {
 var botones = document.getElementsByClassName("agregarPresupuesto");
 
 function agregarEventos(lista) {
-    for (var i = 0; i < lista.length; i++) {
+    for (let i = 0; i < lista.length; i++) {
         lista[i].addEventListener("click", function () {
             Comparar(baseDatos, lista[i].value);
         });
