@@ -30,6 +30,28 @@ main #index {
     main #index .row .intel {
       background-color: #0071c5; }
 
+main #mains {
+  padding: 2rem 0; }
+  main #mains .row {
+    justify-content: center; }
+    main #mains .row > div {
+      display: grid;
+      grid-template-columns: auto auto 10%;
+      grid-template-rows: auto;
+      border: 2px solid gray;
+      border-radius: 5px;
+      padding: 0;
+      margin: 0.5rem 0; }
+      main #mains .row > div .textoComponente {
+        text-align: left;
+        align-self: center; }
+        main #mains .row > div .textoComponente p {
+          margin: 0; }
+    main #mains .row > div:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: all 1s;
+      transform: scale(1.01, 1.01); }
+
 footer {
   background-color: #770018; }
   footer .copyright {
