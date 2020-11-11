@@ -3,9 +3,24 @@ header {
     position: sticky;
     top: 0;
     z-index: 9999;
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        i {
+            font-size: 3rem;
+            margin-left: auto;
+            margin-right: 1rem;
+        }
+    }
     h2 {
         font-size: 3rem;
         text-align: center;
         padding: 1rem;
+        color: white;
+    }
+    a:hover {
+        list-style: none;
+        text-decoration: none;
     }
 }

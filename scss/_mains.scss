@@ -2,7 +2,7 @@ main {
     #mains {
         padding: 2rem 0;
         .row {
-            justify-content: center;
+            justify-content: space-around;
             > div {
                 display: grid;
                 grid-template-columns: auto auto 10%;
@@ -11,7 +11,7 @@ main {
                 border-radius: 5px;
                 padding: 0;
                 margin: 0.5rem 0;
-
+                transition: all 1s;
                 .textoComponente {
                     text-align: left;
                     align-self: center;
@@ -21,9 +21,8 @@ main {
                 }
             }
             > div:hover {
-                background-color: rgba(255, 255, 255, 0.1);
-                transition: all 1s;
-                transform: scale(1.01, 1.01);
+                background-color: rgba(255, 145, 0, 0.5);
+                transform: scale(1.1, 1.1);
             }
         }
     }

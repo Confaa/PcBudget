@@ -7,15 +7,16 @@ main {
             text-align: center;
             font-size: 3rem;
             margin-bottom: 3rem;
+            
         }
         .row {
             justify-content: space-around;
             margin: 5rem 0;
             > div {
-                display: flex;
+                display: grid;
                 align-content: center;
                 height: 200px;
-                padding: 1rem;
+                padding: 0.5rem;
                 transition: all 1s;
             }
             div:hover {
