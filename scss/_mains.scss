@@ -1,8 +1,9 @@
 main {
     #mains {
-        padding: 2rem 0;
         .row {
             justify-content: space-around;
+            margin-left: 0;
+            margin-right: 0;
             > div {
                 display: grid;
                 grid-template-columns: auto auto 10%;
@@ -21,8 +22,20 @@ main {
                 }
             }
             > div:hover {
-                background-color: rgba(255, 145, 0, 0.5);
+                background-color: rgb(255, 145, 0);
                 transform: scale(1.1, 1.1);
+            }
+        }
+    }
+    .navegacion {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        list-style: none;
+        li {
+            padding: 0.25rem;
+            i {
+                color: orange;
             }
         }
     }

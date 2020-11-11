@@ -1,5 +1,5 @@
 header {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
   position: sticky;
   top: 0;
   z-index: 9999; }
@@ -15,6 +15,7 @@ header {
     font-size: 3rem;
     text-align: center;
     padding: 1rem;
+    padding-left: 0;
     color: white; }
   header a:hover {
     list-style: none;
@@ -42,27 +43,37 @@ main #index {
     main #index .row .intel {
       background-color: #0071c5; }
 
-main #mains {
-  padding: 2rem 0; }
-  main #mains .row {
-    justify-content: space-around; }
-    main #mains .row > div {
-      display: grid;
-      grid-template-columns: auto auto 10%;
-      grid-template-rows: auto;
-      border: 2px solid gray;
-      border-radius: 5px;
-      padding: 0;
-      margin: 0.5rem 0;
-      transition: all 1s; }
-      main #mains .row > div .textoComponente {
-        text-align: left;
-        align-self: center; }
-        main #mains .row > div .textoComponente p {
-          margin: 0; }
-    main #mains .row > div:hover {
-      background-color: rgba(255, 145, 0, 0.5);
-      transform: scale(1.1, 1.1); }
+main #mains .row {
+  justify-content: space-around;
+  margin-left: 0;
+  margin-right: 0; }
+  main #mains .row > div {
+    display: grid;
+    grid-template-columns: auto auto 10%;
+    grid-template-rows: auto;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0.5rem 0;
+    transition: all 1s; }
+    main #mains .row > div .textoComponente {
+      text-align: left;
+      align-self: center; }
+      main #mains .row > div .textoComponente p {
+        margin: 0; }
+  main #mains .row > div:hover {
+    background-color: #ff9100;
+    transform: scale(1.1, 1.1); }
+
+main .navegacion {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  list-style: none; }
+  main .navegacion li {
+    padding: 0.25rem; }
+    main .navegacion li i {
+      color: orange; }
 
 footer {
   background-color: #770018; }
