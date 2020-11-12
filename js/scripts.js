@@ -6,13 +6,13 @@ function Presupuesto() {
 
     this.agregarProducto = function (item) {
         this.producto.push(item);
-        sessionStorage.setItem("lista", JSON.stringify(this.producto));
+        localStorage.setItem("lista", JSON.stringify(this.producto));
         /* alert("Agregado al presupuesto"); */
     };
 
     this.base = function () {
-        if (sessionStorage.getItem("lista") != null)
-            this.producto = JSON.parse(sessionStorage.getItem("lista"));
+        if (localStorage.getItem("lista") != null)
+            this.producto = JSON.parse(localStorage.getItem("lista"));
     };
 }
 
@@ -134,56 +134,29 @@ var baseDatos = [
     }
 ];
 
-/* var tipo;
-var marca;
-var cantidad;
-var componente;
-var presupuesto = new Presupuesto();
-var x;
-var decision;
-var sigoCargando = true;
-while (tope >= totalCompra && sigoCargando == true) {
-    x = false;
-    tipo = prompt("Tipo de componente: ");
-    marca = prompt("Marca: ");
-    cantidad = prompt("Unidades: ");
-
-    tipo = tipo.toLowerCase();
-
-    marca = marca.trim();
-    marca = marca.toUpperCase();
-
-    if (marca == "ASUS") {
-        totalCompra = totalCompra + 100 * cantidad;
-    } else if (marca == "MSI") {
-        totalCompra = totalCompra + 90 * cantidad;
-    } else if (marca == "GIGABYTE") {
-        totalCompra = totalCompra + 90 * cantidad;
-    } else {
-        x = true;
-        alert("No se ha encontrado el producto solicitado");
+function mostrarPresupuesto(lista) {
+    var output = "";
+    for (let i = 0; i < lista.length; i++) {
+        output +=
+            "<p>Marca: " +
+            lista[i].marca +
+            "</p>" +
+            "<p>Modelo: " +
+            lista[i].modelo +
+            "</p>" +
+            "<p>Precio: " +
+            lista[i].precio +
+            "$</p>";
     }
-    if (totalCompra > tope) {
-        alert("No se pudo cargar el producto solicitado, limite superado");
-        break;
-    }
-    if (x == false) {
-        componente = new Componente(tipo, marca, cantidad);
-        presupuesto.agregarproducto(componente);
-    }
-    do {
-        decision = prompt("Desea agregar algo mas al presupuesto? Y(Si) N(no)");
-        decision = decision.toUpperCase();
-        if (decision == "Y") {
-            sigoCargando = true;
-        } else if (decision == "N") {
-            sigoCargando = false;
-        } else {
-            alert("Opcion incorrecta");
-        }
-    } while (decision != "N" && decision != "Y");
+    return output;
 }
+$("#presupuesto").append(mostrarPresupuesto(presupuesto.producto));
+/* $("#presupuesto").html(mostrarPresupuesto(presupuesto.producto)); */
 
-console.log(presupuesto);
-console.log(typeof presupuesto);
-alert("Dinero gastado: " + totalCompra); */
+/* document
+    .getElementById("presupuesto")
+    .appendChild(mostrarPresupuesto(presupuesto.producto));
+
+document
+    .getElementById("presupuesto")
+    .innerHTML(mostrarPresupuesto(presupuesto.producto)) */
