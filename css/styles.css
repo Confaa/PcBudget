@@ -18,6 +18,8 @@ header {
         flex-direction: row;
         align-items: center;
         justify-content: center; }
+        header nav a span p {
+          margin: 0; }
     header nav a:hover {
       color: white;
       list-style: none;
@@ -31,19 +33,22 @@ header {
     color: white; }
 
 main #index {
-  align-self: center; }
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
   main #index h3 {
     text-align: center;
     font-size: 3rem;
-    margin-bottom: 3rem; }
+    margin-bottom: 1rem; }
   main #index .row {
     justify-content: space-around;
-    margin: 5rem 0; }
+    margin: 1rem 0; }
     main #index .row > div {
       display: grid;
       align-content: center;
       height: 200px;
-      padding: 0.5rem;
+      margin: 1rem;
       transition: all 1s; }
     main #index .row div:hover {
       transform: scale(1.1, 1.1); }
@@ -51,6 +56,8 @@ main #index {
       background-color: crimson; }
     main #index .row .intel {
       background-color: #0071c5; }
+  main #index p {
+    text-align: center; }
 
 main #mains .row {
   justify-content: space-around;
@@ -74,16 +81,6 @@ main #mains .row {
     background-color: rgba(255, 145, 0, 0.7);
     transform: scale(1.1, 1.1); }
 
-main .navegacion {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  list-style: none; }
-  main .navegacion li {
-    padding: 0.25rem; }
-    main .navegacion li i {
-      color: orange; }
-
 footer {
   background-color: #770018; }
   footer .copyright {
@@ -106,5 +103,19 @@ body {
 .grid {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
   min-height: 100vh; }
+
+.container-fluid {
+  padding: 0; }
+
+.navegacion ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  list-style: none;
+  margin: 0; }
+  .navegacion ul li {
+    padding: 0.25rem; }
+    .navegacion ul li i {
+      color: orange; }

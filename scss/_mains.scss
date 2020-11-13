@@ -27,16 +27,4 @@ main {
             }
         }
     }
-    .navegacion {
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-        list-style: none;
-        li {
-            padding: 0.25rem;
-            i {
-                color: orange;
-            }
-        }
-    }
 }
