@@ -6,13 +6,15 @@ main {
             margin-right: 0;
             > div {
                 display: grid;
-                grid-template-columns: auto auto 10%;
-                grid-template-rows: auto;
-                border: 2px solid gray;
+                grid-template-rows: auto 10%;
+                grid-template-columns: auto;
+                align-items: center;
+                justify-content: center;
+                border: 0.2rem solid transparent;
                 border-radius: 5px;
                 padding: 0;
                 margin: 0.5rem 0;
-                transition: all 1s;
+
                 .textoComponente {
                     text-align: left;
                     align-self: center;
@@ -20,10 +22,15 @@ main {
                         margin: 0;
                     }
                 }
-            }
-            > div:hover {
-                background-color: rgba(255, 145, 0, 0.7);
-                transform: scale(1.1, 1.1);
+                > div {
+                    transition: all 1s;
+                    padding: 0.5rem;
+                    border: 0.1rem solid white;
+                    border-radius: 5px;
+                }
+                > div:hover {
+                    background-color: rgba(0, 102, 255, 0.7);
+                }
             }
         }
     }

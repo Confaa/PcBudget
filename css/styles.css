@@ -65,21 +65,26 @@ main #mains .row {
   margin-right: 0; }
   main #mains .row > div {
     display: grid;
-    grid-template-columns: auto auto 10%;
-    grid-template-rows: auto;
-    border: 2px solid gray;
+    grid-template-rows: auto 10%;
+    grid-template-columns: auto;
+    align-items: center;
+    justify-content: center;
+    border: 0.2rem solid transparent;
     border-radius: 5px;
     padding: 0;
-    margin: 0.5rem 0;
-    transition: all 1s; }
+    margin: 0.5rem 0; }
     main #mains .row > div .textoComponente {
       text-align: left;
       align-self: center; }
       main #mains .row > div .textoComponente p {
         margin: 0; }
-  main #mains .row > div:hover {
-    background-color: rgba(255, 145, 0, 0.7);
-    transform: scale(1.1, 1.1); }
+    main #mains .row > div > div {
+      transition: all 1s;
+      padding: 0.5rem;
+      border: 0.1rem solid white;
+      border-radius: 5px; }
+    main #mains .row > div > div:hover {
+      background-color: rgba(0, 102, 255, 0.7); }
 
 footer {
   background-color: #770018; }
