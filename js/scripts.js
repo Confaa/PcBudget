@@ -1,6 +1,3 @@
-/* var tope = prompt("Indiquenos su presupuesto: ");
-var totalCompra = 0; */
-
 function Presupuesto() {
     this.producto = [];
 
@@ -8,6 +5,11 @@ function Presupuesto() {
         this.producto.push(item);
         localStorage.setItem("lista", JSON.stringify(this.producto));
         /* alert("Agregado al presupuesto"); */
+    };
+
+    this.vaciarCarrito = function () {
+        this.producto.splice(0);
+        localStorage.setItem("lista", JSON.stringify(this.producto));
     };
 
     this.base = function () {
@@ -49,11 +51,20 @@ presupuesto.base();
 agregarEventos(botones);
 
 console.log(presupuesto.producto);
+function vaciar() {
+    presupuesto.vaciarCarrito();
+}
 
+function resaltarPresupuesto() {
+    $("#presupuesto p").css("color", "yellow");
+    $("#presupuesto div").css("border-color", "blue");
+}
 function mostrarPresupuesto(lista) {
     var output = "";
+    var totalCompra = 0;
     for (let i = 0; i < lista.length; i++) {
         output +=
+            "<div>" +
             "<p>Marca: " +
             lista[i].marca +
             "</p>" +
@@ -62,11 +73,21 @@ function mostrarPresupuesto(lista) {
             "</p>" +
             "<p>Precio: " +
             lista[i].precio +
-            "$</p>";
+            "$</p>" +
+            "</div>";
+        totalCompra += Number(lista[i].precio);
     }
+    output +=
+        "<p>Total de la compra: " +
+        totalCompra +
+        "$</p>" +
+        "<button class='btn btn-danger' onclick='vaciar()'>Vaciar carrito</button> " +
+        "<button class='btn btn-primary' onclick='resaltarPresupuesto()'>Resaltar presupuesto</button> ";
     return output;
 }
+
 $("#presupuesto").append(mostrarPresupuesto(presupuesto.producto));
+
 /* $("#presupuesto").html(mostrarPresupuesto(presupuesto.producto)); */
 
 /* document

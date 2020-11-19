@@ -86,6 +86,13 @@ main #mains .row {
     main #mains .row > div > div:hover {
       background-color: rgba(0, 102, 255, 0.7); }
 
+#presupuesto {
+  display: flex;
+  flex-direction: column; }
+  #presupuesto > div {
+    padding: 1rem;
+    border: 2px solid white; }
+
 footer {
   background-color: #770018; }
   footer .copyright {
