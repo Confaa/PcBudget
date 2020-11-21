@@ -1,0 +1,12 @@
+https://www.intel.la/content/www/xl/es/products/processors/core/i9-processors/i9-10900k.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i9-processors/i9-9900k.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i9-processors/i9-10850k.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i7-processors/i7-10700k.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i7-processors/i7-9700k.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i5-processors/i5-10600k.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i5-processors/i5-10500.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i5-processors/i5-9600k.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i5-processors/i5-10400.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i3-processors/i3-10320.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i3-processors/i3-10100.html
+https://www.intel.la/content/www/xl/es/products/processors/core/i3-processors/i3-9100.html

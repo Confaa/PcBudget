@@ -1,0 +1,56 @@
+[
+    {
+        "tipo": "Case",
+        "marca": "NZXT",
+        "modelo": "H510 ATX Mid Tower",
+        "precio": 69.98,
+        "compatibilidad": "All",
+        "urlImagen": "-",
+        "codigoProducto": 1066
+    },
+    {
+        "tipo": "Case",
+        "marca": "Corsair",
+        "modelo": "275R Airflow ATX Mid Tower",
+        "precio": 79.99,
+        "compatibilidad": "All",
+        "urlImagen": "-",
+        "codigoProducto": 1067
+    },
+    {
+        "tipo": "Case",
+        "marca": "Corsair",
+        "modelo": "Carbide 175R RGB ATX Mid Tower",
+        "precio": 59.99,
+        "compatibilidad": "All",
+        "urlImagen": "-",
+        "codigoProducto": 1068
+    },
+    {
+        "tipo": "Case",
+        "marca": "Cougar",
+        "modelo": "MX330 ATX Mid Tower",
+        "precio": 44.99,
+        "compatibilidad": "All",
+        "urlImagen": "-",
+        "codigoProducto": 1069
+    },
+    {
+        "tipo": "Case",
+        "marca": "Aerocool",
+        "modelo": "Cylon ATX Mid Tower",
+        "precio": 50.99,
+        "compatibilidad": "All",
+        "urlImagen": "-",
+        "codigoProducto": 1070
+    },
+    {
+        "tipo": "Case",
+        "marca": "Lian Li",
+        "modelo": "O11D XL-X ATX Full Tower",
+        "precio": 243.62,
+        "compatibilidad": "All",
+        "urlImagen": "-",
+        "codigoProducto": 1071
+    }
+]

@@ -1,0 +1,12 @@
+https://www.amd.com/es/products/cpu/amd-ryzen-5-3600
+https://www.amd.com/es/products/cpu/amd-ryzen-7-3700x
+https://www.amd.com/es/products/cpu/amd-ryzen-9-3900x
+https://www.amd.com/es/products/cpu/amd-ryzen-3-3100
+https://www.amd.com/es/products/cpu/amd-ryzen-5-5600x
+https://www.amd.com/es/products/cpu/amd-ryzen-7-3800x
+https://www.amd.com/es/products/apu/amd-ryzen-3-3200g
+https://www.amd.com/es/products/cpu/amd-ryzen-5-2600
+https://www.amd.com/es/products/cpu/amd-ryzen-9-3950x
+https://www.amd.com/es/products/cpu/amd-ryzen-5-2600x
+https://www.amd.com/es/products/cpu/amd-ryzen-7-2700
+https://www.amd.com/es/products/apu/amd-ryzen-5-2400g
