@@ -65,15 +65,23 @@ function mostrarPresupuesto(lista) {
     for (let i = 0; i < lista.length; i++) {
         output +=
             "<div>" +
+            "<img src='" +
+            lista[i].urlImagen +
+            "' class='img-fluid h-100' loading='lazy' alt=''>" +
+            "<span>" +
             "<p>Marca: " +
             lista[i].marca +
             "</p>" +
             "<p>Modelo: " +
             lista[i].modelo +
             "</p>" +
+            "</span>" +
             "<p>Precio: " +
             lista[i].precio +
             "$</p>" +
+            "<button class='btn btn-danger' value='" +
+            lista[i].codigoProducto +
+            "'><i class='fas fa-trash-alt'></i></button>" +
             "</div>";
         totalCompra += Number(lista[i].precio);
     }
