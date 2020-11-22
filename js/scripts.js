@@ -1,107 +1,104 @@
-function Presupuesto() {
-    this.producto = [];
+function Carrito() {
+    this.productos = [];
 
     this.agregarProducto = function (item) {
-        this.producto.push(item);
-        localStorage.setItem("lista", JSON.stringify(this.producto));
-        /* alert("Agregado al presupuesto"); */
+        this.productos.push(item);
+        localStorage.setItem("carrito", JSON.stringify(this.productos));
+        alert("Agregado al carrito");
     };
 
-    this.eliminarProducto = function (codigoProductoBorrar) {
-        this.producto = this.producto.filter(function (producto) {
-            return producto.codigoProducto != codigoProductoBorrar;
+    this.eliminarProducto = function (codigoBorrar) {
+        this.productos = this.productos.filter(function (productos) {
+            return productos.codigo != codigoBorrar;
         });
-        localStorage.setItem("lista", JSON.stringify(this.producto));
+        localStorage.setItem("carrito", JSON.stringify(this.productos));
     };
 
     this.vaciarCarrito = function () {
-        this.producto.splice(0);
-        localStorage.setItem("lista", JSON.stringify(this.producto));
+        this.productos.splice(0);
+        localStorage.setItem("carrito", JSON.stringify(this.productos));
     };
 
-    this.base = function () {
-        if (localStorage.getItem("lista") != null)
-            this.producto = JSON.parse(localStorage.getItem("lista"));
+    this.levantarProductosEnNavegador = function () {
+        if (localStorage.getItem("carrito") != null)
+            this.productos = JSON.parse(localStorage.getItem("carrito"));
     };
 }
 
-function Producto(tip, mar, mod, pre, comp, url, codPro) {
+function Producto(tip, mar, mod, pre, comp, url, cod) {
     this.tipo = tip;
     this.marca = mar;
     this.modelo = mod;
     this.precio = pre;
     this.compatibilidad = comp;
     this.urlImagen = url;
-    this.codigoProducto = codPro;
+    this.codigo = cod;
 }
 
-function Comparar(lista, valor) {
-    for (i = 0; i < lista.length; i++) {
-        if (lista[i].codigoProducto == valor) {
-            presupuesto.agregarProducto(lista[i]);
+function Comparar(datos, codigoBoton) {
+    for (i = 0; i < datos.length; i++) {
+        if (datos[i].codigo == codigoBoton) {
+            carrito.agregarProducto(datos[i]);
         }
     }
 }
 
-var botonesProductos = document.getElementsByClassName("agregarPresupuesto");
+var botonesProductos = document.getElementsByClassName("agregarCarrito");
 
-function agregarEventos(lista) {
-    for (let i = 0; i < lista.length; i++) {
-        lista[i].addEventListener("click", function () {
-            Comparar(baseDatos, lista[i].value);
+function agregarEventosProductos(botones) {
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].addEventListener("click", function () {
+            Comparar(baseDatos, botones[i].value);
         });
     }
 }
 
-var presupuesto = new Presupuesto();
-presupuesto.base();
-agregarEventos(botonesProductos);
+var carrito = new Carrito();
+carrito.levantarProductosEnNavegador();
+agregarEventosProductos(botonesProductos);
 
-console.log(presupuesto.producto);
-function vaciar() {
-    presupuesto.vaciarCarrito();
+console.log(carrito.productos);
+
+function resaltarcarrito() {
+    $("#carrito p").css("color", "yellow");
+    $("#carrito div").css("border-color", "blue");
 }
-
-/* function resaltarPresupuesto() {
-    $("#presupuesto p").css("color", "yellow");
-    $("#presupuesto div").css("border-color", "blue");
-} */
-function mostrarPresupuesto(lista) {
+function mostrarCarrito(carritoProductos) {
     var output = "";
     var totalCompra = 0;
-    for (let i = 0; i < lista.length; i++) {
+    for (let i = 0; i < carritoProductos.length; i++) {
         output +=
             "<div>" +
             "<img src='" +
-            lista[i].urlImagen +
+            carritoProductos[i].urlImagen +
             "' class='img-fluid h-100' loading='lazy' alt=''>" +
             "<span>" +
             "<p>Marca: " +
-            lista[i].marca +
+            carritoProductos[i].marca +
             "</p>" +
             "<p>Modelo: " +
-            lista[i].modelo +
+            carritoProductos[i].modelo +
             "</p>" +
             "</span>" +
             "<p>Precio: " +
-            lista[i].precio +
+            carritoProductos[i].precio +
             "$</p>" +
-            "<button class='btn btn-danger' onclick='presupuesto.eliminarProducto(event.target.value)' value='" +
-            lista[i].codigoProducto +
+            "<button class='btn btn-danger' onclick='carrito.eliminarProducto(event.target.value)' value='" +
+            carritoProductos[i].codigo +
             "'><i class='fas fa-trash-alt'></i></button>" +
             "</div>";
-        totalCompra += Number(lista[i].precio);
+        totalCompra += Number(carritoProductos[i].precio);
     }
     output +=
         "<p>Total de la compra: " +
         totalCompra +
         "$</p>" +
-        "<button class='btn btn-danger' onclick='presupuesto.vaciarCarrito()'>Vaciar carrito</button> " +
-        "<button class='btn btn-primary' onclick='resaltarPresupuesto()'>Resaltar presupuesto</button> ";
+        "<button class='btn btn-danger' onclick='carrito.vaciarCarrito()'>Vaciar carrito</button> " +
+        "<button class='btn btn-primary' onclick='resaltarcarrito()'>Resaltar carrito</button> ";
     return output;
 }
 
-$("#presupuesto").append(mostrarPresupuesto(presupuesto.producto));
+$("#cart").append(mostrarCarrito(carrito.productos));
 
 var baseDatos = [
     {
@@ -111,7 +108,7 @@ var baseDatos = [
         "precio": 529.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i9-10900K.png",
-        "codigoProducto": 1000
+        "codigo": 1000
     },
     {
         "tipo": "CPU",
@@ -120,7 +117,7 @@ var baseDatos = [
         "precio": 383.99,
         "compatibilidad": "Intel - Socket LGA1151",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i9-9900K.png",
-        "codigoProducto": 1001
+        "codigo": 1001
     },
     {
         "tipo": "CPU",
@@ -129,7 +126,7 @@ var baseDatos = [
         "precio": 449.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i9-10850K.png",
-        "codigoProducto": 1002
+        "codigo": 1002
     },
     {
         "tipo": "CPU",
@@ -138,7 +135,7 @@ var baseDatos = [
         "precio": 369.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos//cpuIntel/Intel-Core-i7-10700K.png",
-        "codigoProducto": 1003
+        "codigo": 1003
     },
     {
         "tipo": "CPU",
@@ -147,7 +144,7 @@ var baseDatos = [
         "precio": 289.99,
         "compatibilidad": "Intel - Socket LGA1151",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i7-9700K.png",
-        "codigoProducto": 1004
+        "codigo": 1004
     },
     {
         "tipo": "CPU",
@@ -156,7 +153,7 @@ var baseDatos = [
         "precio": 264.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i5-10600K.png",
-        "codigoProducto": 1005
+        "codigo": 1005
     },
     {
         "tipo": "CPU",
@@ -165,7 +162,7 @@ var baseDatos = [
         "precio": 239.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i5-10500.png",
-        "codigoProducto": 1006
+        "codigo": 1006
     },
     {
         "tipo": "CPU",
@@ -174,7 +171,7 @@ var baseDatos = [
         "precio": 194.99,
         "compatibilidad": "Intel - Socket LGA1151",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i5-9600K.png",
-        "codigoProducto": 1007
+        "codigo": 1007
     },
     {
         "tipo": "CPU",
@@ -183,7 +180,7 @@ var baseDatos = [
         "precio": 174.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i5-10400.png",
-        "codigoProducto": 1008
+        "codigo": 1008
     },
     {
         "tipo": "CPU",
@@ -192,7 +189,7 @@ var baseDatos = [
         "precio": 196,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i3-10320.png",
-        "codigoProducto": 1009
+        "codigo": 1009
     },
     {
         "tipo": "CPU",
@@ -201,7 +198,7 @@ var baseDatos = [
         "precio": 113,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i3-10100.png",
-        "codigoProducto": 1010
+        "codigo": 1010
     },
     {
         "tipo": "CPU",
@@ -210,7 +207,7 @@ var baseDatos = [
         "precio": 109.99,
         "compatibilidad": "Intel - Socket LGA1151",
         "urlImagen": "../img/fotosProductos/cpuIntel/Intel-Core-i3-9100.png",
-        "codigoProducto": 1011
+        "codigo": 1011
     },
     {
         "tipo": "Mother",
@@ -219,7 +216,7 @@ var baseDatos = [
         "precio": 286.62,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/motherIntel/Asus-ROG-STRIX-Z490-E-GAMING.png",
-        "codigoProducto": 1012
+        "codigo": 1012
     },
     {
         "tipo": "Mother",
@@ -228,7 +225,7 @@ var baseDatos = [
         "precio": 199.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/motherIntel/MSI-MPG-Z490-GAMING-EDGE-WIFI.png",
-        "codigoProducto": 1013
+        "codigo": 1013
     },
     {
         "tipo": "Mother",
@@ -237,7 +234,7 @@ var baseDatos = [
         "precio": 169.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/motherIntel/MSI-MPG-Z490-GAMING-PLUS.png",
-        "codigoProducto": 1014
+        "codigo": 1014
     },
     {
         "tipo": "Mother",
@@ -246,7 +243,7 @@ var baseDatos = [
         "precio": 209.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/motherIntel/Asus-PRIME-Z490-A.png",
-        "codigoProducto": 1015
+        "codigo": 1015
     },
     {
         "tipo": "Mother",
@@ -255,7 +252,7 @@ var baseDatos = [
         "precio": 189.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/motherIntel/MSI-MAG-Z490-TOMAHAWK.png",
-        "codigoProducto": 1016
+        "codigo": 1016
     },
     {
         "tipo": "Mother",
@@ -264,7 +261,7 @@ var baseDatos = [
         "precio": 496.88,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/motherIntel/Asus-ROG-MAXIMUS-XII-FORMULA.png",
-        "codigoProducto": 1017
+        "codigo": 1017
     },
     {
         "tipo": "Mother",
@@ -273,7 +270,7 @@ var baseDatos = [
         "precio": 290.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/motherIntel/Gigabyte-Z490-AORUS-ULTRA.png",
-        "codigoProducto": 1018
+        "codigo": 1018
     },
     {
         "tipo": "Mother",
@@ -282,7 +279,7 @@ var baseDatos = [
         "precio": 351.99,
         "compatibilidad": "Intel - Socket LGA1200",
         "urlImagen": "../img/fotosProductos/motherIntel/ASRock-Z490-Taichi.png",
-        "codigoProducto": 1019
+        "codigo": 1019
     },
     {
         "tipo": "Mother",
@@ -291,7 +288,7 @@ var baseDatos = [
         "precio": 325.07,
         "compatibilidad": "Intel - Socket LGA1151",
         "urlImagen": "../img/fotosProductos/motherIntel/Asus-ROG-STRIX-Z390-E-GAMING.png",
-        "codigoProducto": 1020
+        "codigo": 1020
     },
     {
         "tipo": "Mother",
@@ -300,7 +297,7 @@ var baseDatos = [
         "precio": 99.99,
         "compatibilidad": "Intel - Socket LGA1151",
         "urlImagen": "../img/fotosProductos/motherIntel/MSI-B360-GAMING-PLUS.png",
-        "codigoProducto": 1021
+        "codigo": 1021
     },
     {
         "tipo": "Mother",
@@ -309,7 +306,7 @@ var baseDatos = [
         "precio": 102.99,
         "compatibilidad": "Intel - Socket LGA1151",
         "urlImagen": "../img/fotosProductos/motherIntel/ASRock-B365M-Phantom-Gaming-4.png",
-        "codigoProducto": 1022
+        "codigo": 1022
     },
     {
         "tipo": "Mother",
@@ -318,7 +315,7 @@ var baseDatos = [
         "precio": 381.49,
         "compatibilidad": "Intel - Socket LGA1151",
         "urlImagen": "../img/fotosProductos/motherIntel/MSI-Z270-GAMING-PRO-CARBON.png",
-        "codigoProducto": 1023
+        "codigo": 1023
     },
     {
         "tipo": "CPU",
@@ -327,7 +324,7 @@ var baseDatos = [
         "precio": 239.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-5-3600.png",
-        "codigoProducto": 1024
+        "codigo": 1024
     },
     {
         "tipo": "CPU",
@@ -336,7 +333,7 @@ var baseDatos = [
         "precio": 304.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-7-3700X.png",
-        "codigoProducto": 1025
+        "codigo": 1025
     },
     {
         "tipo": "CPU",
@@ -345,7 +342,7 @@ var baseDatos = [
         "precio": 429.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-9-3900X.png",
-        "codigoProducto": 1026
+        "codigo": 1026
     },
     {
         "tipo": "CPU",
@@ -354,7 +351,7 @@ var baseDatos = [
         "precio": 118.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-3-3100.png",
-        "codigoProducto": 1027
+        "codigo": 1027
     },
     {
         "tipo": "CPU",
@@ -363,7 +360,7 @@ var baseDatos = [
         "precio": 417.12,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-5-5600X.png",
-        "codigoProducto": 1028
+        "codigo": 1028
     },
     {
         "tipo": "CPU",
@@ -372,7 +369,7 @@ var baseDatos = [
         "precio": 339.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-7-3800X.png",
-        "codigoProducto": 1029
+        "codigo": 1029
     },
     {
         "tipo": "CPU",
@@ -381,7 +378,7 @@ var baseDatos = [
         "precio": 99.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-3-3200G.png",
-        "codigoProducto": 1030
+        "codigo": 1030
     },
     {
         "tipo": "CPU",
@@ -390,7 +387,7 @@ var baseDatos = [
         "precio": 149.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-5-2600.png",
-        "codigoProducto": 1031
+        "codigo": 1031
     },
     {
         "tipo": "CPU",
@@ -399,7 +396,7 @@ var baseDatos = [
         "precio": 704.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-9-3950X.png",
-        "codigoProducto": 1032
+        "codigo": 1032
     },
     {
         "tipo": "CPU",
@@ -408,7 +405,7 @@ var baseDatos = [
         "precio": 165.88,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-5-2600X.png",
-        "codigoProducto": 1033
+        "codigo": 1033
     },
     {
         "tipo": "CPU",
@@ -417,7 +414,7 @@ var baseDatos = [
         "precio": 369.76,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-7-2700.png",
-        "codigoProducto": 1034
+        "codigo": 1034
     },
     {
         "tipo": "CPU",
@@ -426,7 +423,7 @@ var baseDatos = [
         "precio": 267,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/cpuAmd/AMD-Ryzen-5-2400G.png",
-        "codigoProducto": 1035
+        "codigo": 1035
     },
     {
         "tipo": "Mother",
@@ -435,7 +432,7 @@ var baseDatos = [
         "precio": 179.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/MSI-MAG-B550-TOMAHAWK.png",
-        "codigoProducto": 1036
+        "codigo": 1036
     },
     {
         "tipo": "Mother",
@@ -444,7 +441,7 @@ var baseDatos = [
         "precio": 94.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/Gigabyte-B550M-DS3H.png",
-        "codigoProducto": 1037
+        "codigo": 1037
     },
     {
         "tipo": "Mother",
@@ -453,7 +450,7 @@ var baseDatos = [
         "precio": 299.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/Asus-ROG-Strix-X570-E-Gaming.png",
-        "codigoProducto": 1038
+        "codigo": 1038
     },
     {
         "tipo": "Mother",
@@ -462,7 +459,7 @@ var baseDatos = [
         "precio": 379.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/Asus-ROG-Crosshair-VIII-Hero-WIFI.png",
-        "codigoProducto": 1039
+        "codigo": 1039
     },
     {
         "tipo": "Mother",
@@ -471,7 +468,7 @@ var baseDatos = [
         "precio": 109.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/ASRock-B550M-Pro4.png",
-        "codigoProducto": 1040
+        "codigo": 1040
     },
     {
         "tipo": "Mother",
@@ -480,7 +477,7 @@ var baseDatos = [
         "precio": 179.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/Gigabyte-B550I-AORUS-PRO-AX.png",
-        "codigoProducto": 1041
+        "codigo": 1041
     },
     {
         "tipo": "Mother",
@@ -489,7 +486,7 @@ var baseDatos = [
         "precio": 156.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/Gigabyte-B550-AORUS-ELITE.png",
-        "codigoProducto": 1042
+        "codigo": 1042
     },
     {
         "tipo": "Mother",
@@ -498,7 +495,7 @@ var baseDatos = [
         "precio": 299.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/MSI-MEG-X570-UNIFY.png",
-        "codigoProducto": 1043
+        "codigo": 1043
     },
     {
         "tipo": "Mother",
@@ -507,7 +504,7 @@ var baseDatos = [
         "precio": 359.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/Asus-ROG-Crosshair-VIII-Hero.png",
-        "codigoProducto": 1044
+        "codigo": 1044
     },
     {
         "tipo": "Mother",
@@ -516,7 +513,7 @@ var baseDatos = [
         "precio": 549.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/Asus-ROG-Crosshair-VIII-Formula.png",
-        "codigoProducto": 1045
+        "codigo": 1045
     },
     {
         "tipo": "Mother",
@@ -525,7 +522,7 @@ var baseDatos = [
         "precio": 629.99,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/MSI-MEG-X570-GODLIKE.png",
-        "codigoProducto": 1046
+        "codigo": 1046
     },
     {
         "tipo": "Mother",
@@ -534,7 +531,7 @@ var baseDatos = [
         "precio": 69.98,
         "compatibilidad": "AMD - Socket AM4",
         "urlImagen": "../img/fotosProductos/motherAmd/Gigabyte-A520M-S2H.png",
-        "codigoProducto": 1047
+        "codigo": 1047
     },
     {
         "tipo": "Cooler",
@@ -543,7 +540,7 @@ var baseDatos = [
         "precio": 34.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/cooler/Cooler-Master-Hyper-212-EVO.png",
-        "codigoProducto": 1048
+        "codigo": 1048
     },
     {
         "tipo": "Cooler",
@@ -552,7 +549,7 @@ var baseDatos = [
         "precio": 159.49,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/cooler/Corsair-H100i-RGB-PLATINUM.png",
-        "codigoProducto": 1049
+        "codigo": 1049
     },
     {
         "tipo": "Cooler",
@@ -561,7 +558,7 @@ var baseDatos = [
         "precio": 274.06,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/cooler/NZXT-Kraken-Z73.png",
-        "codigoProducto": 1050
+        "codigo": 1050
     },
     {
         "tipo": "Cooler",
@@ -570,7 +567,7 @@ var baseDatos = [
         "precio": 89.95,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/cooler/Noctua-NH-D15.png",
-        "codigoProducto": 1051
+        "codigo": 1051
     },
     {
         "tipo": "Cooler",
@@ -579,7 +576,7 @@ var baseDatos = [
         "precio": 49.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/cooler/Cooler-Master-MasterLiquid-ML240L-RGB.png",
-        "codigoProducto": 1052
+        "codigo": 1052
     },
     {
         "tipo": "Cooler",
@@ -588,7 +585,7 @@ var baseDatos = [
         "precio": 19.98,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/cooler/Thermaltake-UX100.png",
-        "codigoProducto": 1053
+        "codigo": 1053
     },
     {
         "tipo": "RAM",
@@ -597,7 +594,7 @@ var baseDatos = [
         "precio": 68.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/ram/Crucial-Ballistix-16GB-2x8GB.png",
-        "codigoProducto": 1054
+        "codigo": 1054
     },
     {
         "tipo": "RAM",
@@ -606,7 +603,7 @@ var baseDatos = [
         "precio": 142.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/ram/Corsair-Vengeance-RGB-Pro-32GB-2x16GB.png",
-        "codigoProducto": 1055
+        "codigo": 1055
     },
     {
         "tipo": "RAM",
@@ -615,7 +612,7 @@ var baseDatos = [
         "precio": 28.98,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/ram/G.Skill-Aegis-8GB-1x8GB.png",
-        "codigoProducto": 1056
+        "codigo": 1056
     },
     {
         "tipo": "RAM",
@@ -624,7 +621,7 @@ var baseDatos = [
         "precio": 74.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/ram/Crucial-Ballistix-16GB-2x8GB.png",
-        "codigoProducto": 1057
+        "codigo": 1057
     },
     {
         "tipo": "RAM",
@@ -633,7 +630,7 @@ var baseDatos = [
         "precio": 149.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/ram/Crucial-Ballistix-32GB-2x16GB.png",
-        "codigoProducto": 1058
+        "codigo": 1058
     },
     {
         "tipo": "RAM",
@@ -642,7 +639,7 @@ var baseDatos = [
         "precio": 51.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/ram/ADATA-XPG-Z1-16GB-2x8GB.png",
-        "codigoProducto": 1059
+        "codigo": 1059
     },
     {
         "tipo": "GPU",
@@ -651,7 +648,7 @@ var baseDatos = [
         "precio": 285.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/gpu/MSI-Ventus-XS-OC-GF-GTX-1660-SUPER-6GB.png",
-        "codigoProducto": 1060
+        "codigo": 1060
     },
     {
         "tipo": "GPU",
@@ -660,7 +657,7 @@ var baseDatos = [
         "precio": 274.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/gpu/MSI-Gaming-X-GF-GTX-1660-Ti-6GB.png",
-        "codigoProducto": 1061
+        "codigo": 1061
     },
     {
         "tipo": "GPU",
@@ -669,7 +666,7 @@ var baseDatos = [
         "precio": 258.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/gpu/Gigabyte-Windforce-OC-GF-GTX-1650-SUPER-4GB.png",
-        "codigoProducto": 1062
+        "codigo": 1062
     },
     {
         "tipo": "GPU",
@@ -678,7 +675,7 @@ var baseDatos = [
         "precio": 384.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/gpu/MSI-Gaming-X-AMD-Radeon-RX-5700-XT-8GB.png",
-        "codigoProducto": 1063
+        "codigo": 1063
     },
     {
         "tipo": "GPU",
@@ -687,7 +684,7 @@ var baseDatos = [
         "precio": 209.0,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/gpu/MSI-Armor-OC-AMD-Radeon-RX-580-8GB.png",
-        "codigoProducto": 1064
+        "codigo": 1064
     },
     {
         "tipo": "GPU",
@@ -696,7 +693,7 @@ var baseDatos = [
         "precio": 869.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/gpu/MSI-Gaming-X-Trio-GF-GTX-2080-SUPER-8GB.png",
-        "codigoProducto": 1065
+        "codigo": 1065
     },
     {
         "tipo": "Case",
@@ -705,7 +702,7 @@ var baseDatos = [
         "precio": 69.98,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/case/NZXT-H510-1.png",
-        "codigoProducto": 1066
+        "codigo": 1066
     },
     {
         "tipo": "Case",
@@ -714,7 +711,7 @@ var baseDatos = [
         "precio": 79.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/case/Corsair-275R-1.png",
-        "codigoProducto": 1067
+        "codigo": 1067
     },
     {
         "tipo": "Case",
@@ -723,7 +720,7 @@ var baseDatos = [
         "precio": 59.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/case/Corsair-Carbide-175R-RGB-1.png",
-        "codigoProducto": 1068
+        "codigo": 1068
     },
     {
         "tipo": "Case",
@@ -732,7 +729,7 @@ var baseDatos = [
         "precio": 44.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/case/Cougar-MX330-1.png",
-        "codigoProducto": 1069
+        "codigo": 1069
     },
     {
         "tipo": "Case",
@@ -741,7 +738,7 @@ var baseDatos = [
         "precio": 50.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/case/Aerocool-Cylon-1.png",
-        "codigoProducto": 1070
+        "codigo": 1070
     },
     {
         "tipo": "Case",
@@ -750,7 +747,7 @@ var baseDatos = [
         "precio": 243.62,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/case/Lian-Li-O11D-XL-X-1.png",
-        "codigoProducto": 1071
+        "codigo": 1071
     },
     {
         "tipo": "Power Supply",
@@ -759,7 +756,7 @@ var baseDatos = [
         "precio": 124.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/powerSupply/Corsair-RM-2019-80-Gold-750W.png",
-        "codigoProducto": 1072
+        "codigo": 1072
     },
     {
         "tipo": "Power Supply",
@@ -768,7 +765,7 @@ var baseDatos = [
         "precio": 69.94,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/powerSupply/EVGA-BQ-80-Bronce-500W.png",
-        "codigoProducto": 1073
+        "codigo": 1073
     },
     {
         "tipo": "Power Supply",
@@ -777,7 +774,7 @@ var baseDatos = [
         "precio": 99.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/powerSupply/Cooler-Master-MWE-Gold-80-Gold-650W.png",
-        "codigoProducto": 1074
+        "codigo": 1074
     },
     {
         "tipo": "Power Supply",
@@ -786,7 +783,7 @@ var baseDatos = [
         "precio": 37.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/powerSupply/Thermaltake-Smart-80-White-500W.png",
-        "codigoProducto": 1075
+        "codigo": 1075
     },
     {
         "tipo": "Power Supply",
@@ -795,7 +792,7 @@ var baseDatos = [
         "precio": 282.86,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/powerSupply/Corsair-HX-Platinum-80-Platinum-1000W.png",
-        "codigoProducto": 1076
+        "codigo": 1076
     },
     {
         "tipo": "Power Supply",
@@ -804,7 +801,7 @@ var baseDatos = [
         "precio": 37.86,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/powerSupply/EVGA-B5-80-Bronce-550W.png",
-        "codigoProducto": 1077
+        "codigo": 1077
     },
     {
         "tipo": "OS",
@@ -813,7 +810,7 @@ var baseDatos = [
         "precio": 108.78,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/os/Windows-10.png",
-        "codigoProducto": 1078
+        "codigo": 1078
     },
     {
         "tipo": "OS",
@@ -822,7 +819,7 @@ var baseDatos = [
         "precio": 139.88,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/os/Windows-10.png",
-        "codigoProducto": 1079
+        "codigo": 1079
     },
     {
         "tipo": "OS",
@@ -831,7 +828,7 @@ var baseDatos = [
         "precio": 0,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/os/Linux.svg",
-        "codigoProducto": 1080
+        "codigo": 1080
     },
     {
         "tipo": "Monitor",
@@ -840,7 +837,7 @@ var baseDatos = [
         "precio": 185.0,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/monitor/AOC-C24G1-23.6-Full-HD-144Hz-1.png",
-        "codigoProducto": 1081
+        "codigo": 1081
     },
     {
         "tipo": "Monitor",
@@ -849,7 +846,7 @@ var baseDatos = [
         "precio": 449.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/monitor/MSI-Optix-G24C4-23.6-Full-HD-144Hz-1.png",
-        "codigoProducto": 1082
+        "codigo": 1082
     },
     {
         "tipo": "Monitor",
@@ -859,7 +856,7 @@ var baseDatos = [
         "compatibilidad": "All",
         "urlImagen":
             "../img/fotosProductos/monitor/Asus-TUF-Gaming-VG279QM-27-Full-HD-280Hz-IPS-1.png",
-        "codigoProducto": 1083
+        "codigo": 1083
     },
     {
         "tipo": "Monitor",
@@ -868,7 +865,7 @@ var baseDatos = [
         "precio": 109.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/monitor/LG-24MK400H-B-24-Full-HD-75Hz-IPS-1.png",
-        "codigoProducto": 1084
+        "codigo": 1084
     },
     {
         "tipo": "Storage HDD",
@@ -877,7 +874,7 @@ var baseDatos = [
         "precio": 54.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/storage/Seagate-Barracuda-Compute-2TB.png",
-        "codigoProducto": 1085
+        "codigo": 1085
     },
     {
         "tipo": "Storage SSD",
@@ -886,7 +883,7 @@ var baseDatos = [
         "precio": 69.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/storage/Samsung-970-Evo-500GB-M.2.png",
-        "codigoProducto": 1086
+        "codigo": 1086
     },
     {
         "tipo": "Storage HDD",
@@ -895,7 +892,7 @@ var baseDatos = [
         "precio": 44.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/storage/Western-Digital-Caviar-Blue-1TB.png",
-        "codigoProducto": 1087
+        "codigo": 1087
     },
     {
         "tipo": "Storage SSD",
@@ -904,7 +901,7 @@ var baseDatos = [
         "precio": 119.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/storage/Samsung-860-Evo-1TB-SATAIII-6Gbs.png",
-        "codigoProducto": 1088
+        "codigo": 1088
     },
     {
         "tipo": "Storage SSD",
@@ -913,7 +910,7 @@ var baseDatos = [
         "precio": 25.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/storage/Kingston-A400-240GB-SATAIII-6Gbs.png",
-        "codigoProducto": 1089
+        "codigo": 1089
     },
     {
         "tipo": "Storage SSD",
@@ -922,6 +919,6 @@ var baseDatos = [
         "precio": 25.99,
         "compatibilidad": "All",
         "urlImagen": "../img/fotosProductos/storage/Western-Digital-Blue-250GB-M.2.png",
-        "codigoProducto": 1090
+        "codigo": 1090
     }
 ];
