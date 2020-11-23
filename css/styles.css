@@ -3,24 +3,24 @@ header {
   position: sticky;
   top: 0;
   z-index: 9999; }
-  header nav {
+  header section {
     display: flex;
     align-items: center;
     justify-content: space-between; }
-    header nav i {
+    header section i {
       font-size: 3rem;
       margin-left: auto;
       margin: 0 1rem; }
-    header nav a {
+    header section a {
       color: white; }
-      header nav a span {
+      header section a span {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center; }
-        header nav a span p {
+        header section a span p {
           margin: 0; }
-    header nav a:hover {
+    header section a:hover {
       color: white;
       list-style: none;
       text-decoration: none; }
@@ -31,33 +31,34 @@ header {
     margin: 0;
     padding-left: 0;
     color: white; }
+  header nav > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0; }
+    header nav > ul li {
+      position: relative;
+      padding: 0.5rem; }
+      header nav > ul li ul {
+        background-color: rgba(119, 0, 24, 0.7);
+        position: absolute;
+        display: none;
+        list-style: none;
+        margin: 0;
+        overflow: hidden;
+        border-bottom: 3px solid white;
+        transform: translateY(0.5rem); }
+    header nav > ul li:hover ul {
+      display: block;
+      min-width: 100%; }
 
-main #index {
-  min-height: 100%;
+main #index .row > div {
   display: flex;
-  flex-direction: column;
-  justify-content: center; }
-  main #index h3 {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 1rem; }
-  main #index .row {
-    justify-content: space-around;
-    margin: 1rem 0; }
-    main #index .row > div {
-      display: grid;
-      align-content: center;
-      height: 200px;
-      margin: 1rem;
-      transition: all 1s; }
-    main #index .row div:hover {
-      transform: scale(1.1, 1.1); }
-    main #index .row .amd {
-      background-color: crimson; }
-    main #index .row .intel {
-      background-color: #0071c5; }
-  main #index p {
-    text-align: center; }
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  height: 10rem; }
 
 main #mains .row {
   justify-content: left;
