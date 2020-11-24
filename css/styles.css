@@ -34,24 +34,41 @@ header {
   header nav > ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     list-style: none;
     margin: 0; }
     header nav > ul li {
       position: relative;
-      padding: 0.5rem; }
+      padding: 0.5rem 1rem;
+      transition: 0.4s all;
+      border-radius: 5px; }
       header nav > ul li ul {
         background-color: rgba(119, 0, 24, 0.7);
         position: absolute;
         display: none;
         list-style: none;
         margin: 0;
+        min-width: 100%;
         overflow: hidden;
         border-bottom: 3px solid white;
-        transform: translateY(0.5rem); }
-    header nav > ul li:hover ul {
-      display: block;
-      min-width: 100%; }
+        transform: translate(-1rem, 0.5rem);
+        white-space: nowrap;
+        border-radius: 5px;
+        max-height: 0; }
+    header nav > ul li:hover {
+      background-color: white;
+      color: black; }
+      header nav > ul li:hover > a {
+        color: black; }
+      header nav > ul li:hover ul {
+        display: block;
+        max-height: 400px;
+        transition: 1s all; }
+  header nav a {
+    color: white;
+    display: block; }
+  header nav a:hover {
+    text-decoration: none; }
 
 main #index .row > div {
   display: flex;
