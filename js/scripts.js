@@ -100,6 +100,10 @@ function mostrarCarrito(carritoProductos) {
 
 $("#cart").append(mostrarCarrito(carrito.productos));
 
+$(".toggle-button").click(function () {
+    $(".navBar li").toggle();
+});
+
 var baseDatos = [
     {
         "tipo": "CPU",
