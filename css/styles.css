@@ -37,7 +37,7 @@ header {
     margin: 0; }
     header nav .navBar li {
       position: relative;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.75rem;
       transition: 0.4s all;
       border-radius: 5px; }
       header nav .navBar li ul {
@@ -49,10 +49,12 @@ header {
         min-width: 100%;
         overflow: hidden;
         border-bottom: 3px solid white;
-        transform: translate(-1rem, 0.5rem);
+        transform: translate(-0.75rem, 0.5rem);
         white-space: nowrap;
         border-radius: 5px;
         max-height: 0; }
+      header nav .navBar li i {
+        margin-left: 0.5rem; }
     header nav .navBar li:hover {
       background-color: white;
       color: black; }
