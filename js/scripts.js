@@ -105,6 +105,7 @@ $(".grid").append(
 $(".botonOcultarNav button").click(function () {
     $(".navBar").slideToggle(500);
 });
+
 var baseDatos = [
     {
         "tipo": "CPU",
