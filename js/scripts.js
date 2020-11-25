@@ -59,10 +59,6 @@ agregarEventosProductos(botonesProductos);
 
 console.log(carrito.productos);
 
-function resaltarcarrito() {
-    $("#carrito p").css("color", "yellow");
-    $("#carrito div").css("border-color", "blue");
-}
 function mostrarCarrito(carritoProductos) {
     var output = "";
     var totalCompra = 0;
@@ -93,8 +89,7 @@ function mostrarCarrito(carritoProductos) {
         "<p>Total de la compra: " +
         totalCompra +
         "$</p>" +
-        "<button class='btn btn-danger' onclick='carrito.vaciarCarrito()'>Vaciar carrito</button> " +
-        "<button class='btn btn-primary' onclick='resaltarcarrito()'>Resaltar carrito</button> ";
+        "<button class='btn btn-danger' onclick='carrito.vaciarCarrito()'>Vaciar carrito</button> ";
     return output;
 }
 
@@ -104,6 +99,12 @@ $(".toggle-button").click(function () {
     $(".navBar li").toggle();
 });
 
+$(".grid").append(
+    "<span class='botonOcultarNav'><button class='btn btn-light'><i class='fas fa-eye-slash'></i></button><small>Navegacion</small></span>"
+);
+$(".botonOcultarNav button").click(function () {
+    $(".navBar").slideToggle(500);
+});
 var baseDatos = [
     {
         "tipo": "CPU",

@@ -192,3 +192,26 @@ body {
     padding: 0.25rem; }
     .navegacion ul li i {
       color: orange; }
+
+.botonOcultarNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .botonOcultarNav button {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50px;
+    position: fixed;
+    right: 1.5rem;
+    bottom: 4rem; }
+    .botonOcultarNav button i {
+      font-size: 2rem;
+      text-align: center; }
+  .botonOcultarNav small {
+    display: none;
+    position: fixed;
+    right: 1.5rem;
+    bottom: 2.5rem; }
+
+.botonOcultarNav:hover small {
+  display: block; }
