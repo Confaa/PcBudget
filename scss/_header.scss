@@ -57,33 +57,18 @@ header {
                 border-radius: 5px;
                 ul {
                     background-color: rgba($fondoHeader, $alpha: 0.7);
-                    position: absolute;
-                    display: none;
                     list-style: none;
                     margin: 0;
                     min-width: 100%;
                     overflow: hidden;
-                    border-bottom: 3px solid white;
-                    transform: translate(-0.75rem, 0.5rem);
+                    transform: translate(-0.75rem, 0.3rem);
                     white-space: nowrap;
                     border-radius: 5px;
                     max-height: 0;
                 }
                 i {
                     margin-left: 0.5rem;
-                }
-            }
-            li:hover {
-                background-color: white;
-                color: black;
-                > a {
-                    color: black;
-                }
-
-                ul {
-                    display: block;
-                    max-height: 400px;
-                    transition: 1s all;
+                    height: 100%;
                 }
             }
         }
@@ -113,6 +98,36 @@ header {
     border-radius: 10px;
 }
 
+.botonOcultarNav {
+    flex-direction: column;
+    align-items: center;
+    button {
+        height: 4rem;
+        width: 4rem;
+        border-radius: 50px;
+        position: fixed;
+        right: 1.5rem;
+        bottom: 4rem;
+        i {
+            font-size: 2rem;
+            text-align: center;
+        }
+    }
+
+    small {
+        display: none;
+        position: fixed;
+        right: 1.5rem;
+        bottom: 2.5rem;
+    }
+}
+
+.botonOcultarNav:hover {
+    small {
+        display: block;
+    }
+}
+
 @include media-breakpoint-between(xs, lg) {
     .toggle-button {
         display: flex;
@@ -124,12 +139,44 @@ header {
         li {
             display: none;
             text-align: center;
+            ul {
+                position: relative;
+            }
         }
+        li:hover {
+            ul {
+                max-height: 400px;
+                transition: 1s ease-in-out;
+            }
+        }
+    }
+    .botonOcultarNav {
+        display: none;
     }
 }
 @include media-breakpoint-up(lg) {
     .navBar {
         flex-direction: row;
         justify-content: center;
+        li {
+            ul {
+                position: absolute;
+            }
+        }
+        li:hover {
+            background-color: white;
+            color: black;
+            > a {
+                color: black;
+            }
+
+            ul {
+                max-height: 400px;
+                transition: 1s ease-in-out;
+            }
+        }
+    }
+    .botonOcultarNav {
+        display: flex;
     }
 }

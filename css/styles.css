@@ -42,28 +42,17 @@ header {
       border-radius: 5px; }
       header nav .navBar li ul {
         background-color: rgba(119, 0, 24, 0.7);
-        position: absolute;
-        display: none;
         list-style: none;
         margin: 0;
         min-width: 100%;
         overflow: hidden;
-        border-bottom: 3px solid white;
-        transform: translate(-0.75rem, 0.5rem);
+        transform: translate(-0.75rem, 0.3rem);
         white-space: nowrap;
         border-radius: 5px;
         max-height: 0; }
       header nav .navBar li i {
-        margin-left: 0.5rem; }
-    header nav .navBar li:hover {
-      background-color: white;
-      color: black; }
-      header nav .navBar li:hover > a {
-        color: black; }
-      header nav .navBar li:hover ul {
-        display: block;
-        max-height: 400px;
-        transition: 1s all; }
+        margin-left: 0.5rem;
+        height: 100%; }
   header nav a {
     color: white;
     display: block; }
@@ -85,6 +74,28 @@ header {
   background-color: white;
   border-radius: 10px; }
 
+.botonOcultarNav {
+  flex-direction: column;
+  align-items: center; }
+  .botonOcultarNav button {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50px;
+    position: fixed;
+    right: 1.5rem;
+    bottom: 4rem; }
+    .botonOcultarNav button i {
+      font-size: 2rem;
+      text-align: center; }
+  .botonOcultarNav small {
+    display: none;
+    position: fixed;
+    right: 1.5rem;
+    bottom: 2.5rem; }
+
+.botonOcultarNav:hover small {
+  display: block; }
+
 @media (max-width: 991.98px) {
   .toggle-button {
     display: flex; }
@@ -93,12 +104,31 @@ header {
     justify-content: left; }
     .navBar li {
       display: none;
-      text-align: center; } }
+      text-align: center; }
+      .navBar li ul {
+        position: relative; }
+    .navBar li:hover ul {
+      max-height: 400px;
+      transition: 1s ease-in-out; }
+  .botonOcultarNav {
+    display: none; } }
 
 @media (min-width: 992px) {
   .navBar {
     flex-direction: row;
-    justify-content: center; } }
+    justify-content: center; }
+    .navBar li ul {
+      position: absolute; }
+    .navBar li:hover {
+      background-color: white;
+      color: black; }
+      .navBar li:hover > a {
+        color: black; }
+      .navBar li:hover ul {
+        max-height: 400px;
+        transition: 1s ease-in-out; }
+  .botonOcultarNav {
+    display: flex; } }
 
 main #index .row > div {
   display: flex;
@@ -139,18 +169,18 @@ main #mains .row {
       background-color: rgba(119, 0, 24, 0.4);
       scale: 1.015; }
 
-#cart > div {
+#cart .elementoCarrito {
   border: 2px solid white;
   display: grid;
   grid-template-columns: 4fr 4fr 4fr 1fr;
   align-items: center;
   height: 12rem;
   background-color: #2b2b2b; }
-  #cart > div span {
+  #cart .elementoCarrito span {
     display: flex;
     flex-direction: column;
     padding: 1rem; }
-  #cart > div button {
+  #cart .elementoCarrito button {
     height: 100%;
     font-size: 2rem; }
 
@@ -192,26 +222,3 @@ body {
     padding: 0.25rem; }
     .navegacion ul li i {
       color: orange; }
-
-.botonOcultarNav {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-  .botonOcultarNav button {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 50px;
-    position: fixed;
-    right: 1.5rem;
-    bottom: 4rem; }
-    .botonOcultarNav button i {
-      font-size: 2rem;
-      text-align: center; }
-  .botonOcultarNav small {
-    display: none;
-    position: fixed;
-    right: 1.5rem;
-    bottom: 2.5rem; }
-
-.botonOcultarNav:hover small {
-  display: block; }

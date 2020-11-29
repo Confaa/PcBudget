@@ -12,11 +12,13 @@ function Carrito() {
             return productos.codigo != codigoBorrar;
         });
         localStorage.setItem("carrito", JSON.stringify(this.productos));
+        borrarProductoDom(codigoBorrar);
     };
 
     this.vaciarCarrito = function () {
         this.productos.splice(0);
         localStorage.setItem("carrito", JSON.stringify(this.productos));
+        $(".elementoCarrito").remove();
     };
 
     this.levantarProductosEnNavegador = function () {
@@ -64,7 +66,7 @@ function mostrarCarrito(carritoProductos) {
     var totalCompra = 0;
     for (let i = 0; i < carritoProductos.length; i++) {
         output +=
-            "<div>" +
+            "<div class='elementoCarrito'>" +
             "<img src='" +
             carritoProductos[i].urlImagen +
             "' class='img-fluid h-100' loading='lazy' alt=''>" +
@@ -106,7 +108,29 @@ $(".botonOcultarNav button").click(function () {
     $(".navBar").slideToggle(500);
 });
 
+var botonesDesplegablesMobile = $(".desplegable i");
+function botonesDesplegables(botones) {
+    for (let i = 0; i > botones.length; i++) {
+        botones[i].click(function () {
+            console.log(i);
+            $(".desplegable").css("max-height", "400px");
+        });
+    }
+}
+botonesDesplegables(botonesDesplegablesMobile);
+
 var baseDatos = [];
 $.get("/js/baseDatos.json", function (data) {
     baseDatos = data;
 });
+
+function borrarProductoDom(codigoBorrar) {
+    var botonesBorrarProductos = $(".elementoCarrito button");
+    var padreBotones;
+    for (let i = 0; i < botonesBorrarProductos.length; i++) {
+        if (codigoBorrar == botonesBorrarProductos[i].value) {
+            padreBotones = $(botonesBorrarProductos[i]).parent();
+            padreBotones.remove();
+        }
+    }
+}
