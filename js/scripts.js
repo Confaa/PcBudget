@@ -97,6 +97,30 @@ function mostrarCarrito(carritoProductos) {
 
 $("#cart").append(mostrarCarrito(carrito.productos));
 
+var botonesAgregarCarrito = $(".agregarCarrito");
+function imprimirDatosProducto(botonesAgregar, baseDeDatos) {
+    for (let i = 0; i < botonesAgregar.length; i++) {
+        let padre = $(botonesAgregar[i]).parent();
+        for (let j = 0; j < baseDeDatos.length; j++) {
+            if (botonesAgregar[i].value == baseDeDatos[j].codigo) {
+                $(padre)
+                    .find(".textoComponente")
+                    .append(
+                        "<p>Marca: " +
+                            baseDeDatos[j].marca +
+                            "</p>" +
+                            "<p>Modelo: " +
+                            baseDeDatos[j].modelo +
+                            "</p>" +
+                            "<p>Precio: $" +
+                            baseDeDatos[j].precio +
+                            "</p>"
+                    );
+            }
+        }
+    }
+}
+
 $(".toggle-button").click(function () {
     $(".navBar li").toggle();
 });
@@ -122,6 +146,7 @@ botonesDesplegables(botonesDesplegablesMobile);
 var baseDatos = [];
 $.get("/js/baseDatos.json", function (data) {
     baseDatos = data;
+    imprimirDatosProducto(botonesAgregarCarrito, baseDatos);
 });
 
 function borrarProductoDom(codigoBorrar) {
@@ -134,3 +159,4 @@ function borrarProductoDom(codigoBorrar) {
         }
     }
 }
+
