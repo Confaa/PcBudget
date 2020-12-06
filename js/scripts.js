@@ -5,15 +5,18 @@ function Carrito() {
         this.productos.push(item);
         localStorage.setItem("carrito", JSON.stringify(this.productos));
         alert("Agregado al carrito");
+        cantidadProductosCarrito(this.productos);
     };
 
     this.eliminarProducto = function (codigoBorrar) {
         this.productos = this.productos.filter(function (productos) {
-            return productos.codigo != codigoBorrar;
+            return productos.productoEnCarrito.codigo != codigoBorrar;
         });
+        console.log(codigoBorrar);
         localStorage.setItem("carrito", JSON.stringify(this.productos));
         borrarProductoDom(codigoBorrar);
         calcularTotal(this.productos);
+        cantidadProductosCarrito(this.productos);
     };
 
     this.vaciarCarrito = function () {
@@ -21,11 +24,50 @@ function Carrito() {
         localStorage.setItem("carrito", JSON.stringify(this.productos));
         $(".elementoCarrito").remove();
         calcularTotal(this.productos);
+        cantidadProductosCarrito(this.productos);
     };
 
     this.levantarProductosEnNavegador = function () {
         if (localStorage.getItem("carrito") != null)
             this.productos = JSON.parse(localStorage.getItem("carrito"));
+    };
+
+    this.mostrarCarrito = function () {
+        var output = "";
+
+        for (let i = 0; i < this.productos.length; i++) {
+            output +=
+                "<div class='elementoCarrito'>" +
+                "<img src='" +
+                this.productos[i].productoEnCarrito.urlImagen +
+                "' class='img-fluid h-100' loading='lazy' alt=''>" +
+                "<span>" +
+                "<p>Marca: " +
+                this.productos[i].productoEnCarrito.marca +
+                "</p>" +
+                "<p>Modelo: " +
+                this.productos[i].productoEnCarrito.modelo +
+                "</p>" +
+                "<p>Cantidad: " +
+                this.productos[i].cantidad +
+                "</p>" +
+                "</span>" +
+                "<p>Precio: " +
+                this.productos[i].productoEnCarrito.precio +
+                "$</p>" +
+                "<button class='btn btn-danger' onclick='carrito.eliminarProducto(event.target.value)' value='" +
+                this.productos[i].productoEnCarrito.codigo +
+                "'><i class='fas fa-trash-alt'></i></button>" +
+                "</div>";
+        }
+
+        output +=
+            "<p>Total de la compra: <span id='total'>" +
+            calcularTotal(this.productos) +
+            "</span> $</p>" +
+            "<button class='btn btn-danger' onclick='carrito.vaciarCarrito()'>Vaciar carrito</button> ";
+        cantidadProductosCarrito(this.productos);
+        return output;
     };
 }
 
@@ -68,44 +110,7 @@ agregarEventosProductos(botonesProductos);
 
 console.log(carrito.productos);
 
-function mostrarCarrito(carritoProductos) {
-    var output = "";
-
-    for (let i = 0; i < carritoProductos.length; i++) {
-        output +=
-            "<div class='elementoCarrito'>" +
-            "<img src='" +
-            carritoProductos[i].productoEnCarrito.urlImagen +
-            "' class='img-fluid h-100' loading='lazy' alt=''>" +
-            "<span>" +
-            "<p>Marca: " +
-            carritoProductos[i].productoEnCarrito.marca +
-            "</p>" +
-            "<p>Modelo: " +
-            carritoProductos[i].productoEnCarrito.modelo +
-            "</p>" +
-            "<p>Cantidad: " +
-            carritoProductos[i].cantidad +
-            "</p>" +
-            "</span>" +
-            "<p>Precio: " +
-            carritoProductos[i].productoEnCarrito.precio +
-            "$</p>" +
-            "<button class='btn btn-danger' onclick='carrito.eliminarProducto(event.target.value)' value='" +
-            carritoProductos[i].productoEnCarrito.codigo +
-            "'><i class='fas fa-trash-alt'></i></button>" +
-            "</div>";
-    }
-
-    output +=
-        "<p>Total de la compra: <span id='total'>" +
-        calcularTotal(carritoProductos) +
-        "</span> $</p>" +
-        "<button class='btn btn-danger' onclick='carrito.vaciarCarrito()'>Vaciar carrito</button> ";
-    return output;
-}
-
-$("#cart").append(mostrarCarrito(carrito.productos));
+$("#cart").append(carrito.mostrarCarrito());
 
 var botonesAgregarCarrito = $(".agregarCarrito");
 function imprimirDatosProducto(botonesAgregar, baseDeDatos) {
@@ -186,4 +191,13 @@ function calcularTotal(carritoProductos) {
     cambiarEnDom.text(totalCompra);
 
     return totalCompra;
+}
+function cantidadProductosCarrito(carritoProductos) {
+    let cantidadProductos = 0;
+    for (let i = 0; i < carritoProductos.length; i++) {
+        cantidadProductos += Number(carritoProductos[i].cantidad);
+    }
+
+    $(".carritoNavBar i").append("<span>" + cantidadProductos + "</span>");
+    $(".carritoNavBar i span").addClass("animate__animated animate__fadeIn animate__fast");
 }

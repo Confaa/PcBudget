@@ -13,21 +13,32 @@ header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        i {
-            font-size: 3rem;
-            margin-left: auto;
-            margin: 0 1rem;
-        }
         a {
             color: white;
 
-            span {
+            .carritoNavBar {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 justify-content: center;
+                i {
+                    font-size: 3rem;
+                    margin-left: auto;
+                    margin: 0 1rem;
+                }
                 p {
                     margin: 0;
+                }
+                span {
+                    position: absolute;
+                    text-align: center;
+                    transform: translate(-0.5rem, -0.2rem);
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    background-color: red;
+                    border-radius: 20px;
+                    font-size: 1.2rem;
+                    font-weight: bold;
                 }
             }
         }

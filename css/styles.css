@@ -7,19 +7,29 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between; }
-    header section i {
-      font-size: 3rem;
-      margin-left: auto;
-      margin: 0 1rem; }
     header section a {
       color: white; }
-      header section a span {
+      header section a .carritoNavBar {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center; }
-        header section a span p {
+        header section a .carritoNavBar i {
+          font-size: 3rem;
+          margin-left: auto;
+          margin: 0 1rem; }
+        header section a .carritoNavBar p {
           margin: 0; }
+        header section a .carritoNavBar span {
+          position: absolute;
+          text-align: center;
+          transform: translate(-0.5rem, -0.2rem);
+          height: 1.5rem;
+          width: 1.5rem;
+          background-color: red;
+          border-radius: 20px;
+          font-size: 1.2rem;
+          font-weight: bold; }
     header section a:hover {
       color: white;
       list-style: none;
