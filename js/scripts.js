@@ -39,12 +39,9 @@ function Producto(tip, mar, mod, pre, comp, url, cod) {
     this.codigo = cod;
 }
 
-function Comparar(datos, codigoBoton) {
-    for (i = 0; i < datos.length; i++) {
-        if (datos[i].codigo == codigoBoton) {
-            carrito.agregarProducto(datos[i]);
-        }
-    }
+function ProductoEnCarrito(prod, cant) {
+    this.productoEnCarrito = prod;
+    this.cantidad = cant;
 }
 
 var botonesProductos = document.getElementsByClassName("agregarCarrito");
@@ -57,6 +54,14 @@ function agregarEventosProductos(botones) {
     }
 }
 
+function Comparar(baseDeDatos, codigoBoton) {
+    for (i = 0; i < baseDeDatos.length; i++) {
+        if (baseDeDatos[i].codigo == codigoBoton) {
+            let aux = new ProductoEnCarrito(baseDeDatos[i], 1);
+            carrito.agregarProducto(aux);
+        }
+    }
+}
 var carrito = new Carrito();
 carrito.levantarProductosEnNavegador();
 agregarEventosProductos(botonesProductos);
@@ -70,21 +75,24 @@ function mostrarCarrito(carritoProductos) {
         output +=
             "<div class='elementoCarrito'>" +
             "<img src='" +
-            carritoProductos[i].urlImagen +
+            carritoProductos[i].productoEnCarrito.urlImagen +
             "' class='img-fluid h-100' loading='lazy' alt=''>" +
             "<span>" +
             "<p>Marca: " +
-            carritoProductos[i].marca +
+            carritoProductos[i].productoEnCarrito.marca +
             "</p>" +
             "<p>Modelo: " +
-            carritoProductos[i].modelo +
+            carritoProductos[i].productoEnCarrito.modelo +
+            "</p>" +
+            "<p>Cantidad: " +
+            carritoProductos[i].cantidad +
             "</p>" +
             "</span>" +
             "<p>Precio: " +
-            carritoProductos[i].precio +
+            carritoProductos[i].productoEnCarrito.precio +
             "$</p>" +
             "<button class='btn btn-danger' onclick='carrito.eliminarProducto(event.target.value)' value='" +
-            carritoProductos[i].codigo +
+            carritoProductos[i].productoEnCarrito.codigo +
             "'><i class='fas fa-trash-alt'></i></button>" +
             "</div>";
     }
@@ -114,12 +122,15 @@ function imprimirDatosProducto(botonesAgregar, baseDeDatos) {
                             "<p>Modelo: " +
                             baseDeDatos[j].modelo +
                             "</p>" +
+                            "<p>Compatibilidad: " +
+                            baseDeDatos[j].compatibilidad +
+                            "</p>" +
                             "<p>Precio: $" +
                             baseDeDatos[j].precio +
                             "</p>"
                     );
+                break;
             }
-            continue;
         }
     }
 }
@@ -167,7 +178,7 @@ function calcularTotal(carritoProductos) {
     let totalCompra = 0;
 
     for (let i = 0; i < carritoProductos.length; i++) {
-        totalCompra += Number(carritoProductos[i].precio);
+        totalCompra += Number(carritoProductos[i].productoEnCarrito.precio);
     }
     totalCompra = totalCompra.toFixed(2);
 
