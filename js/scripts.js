@@ -86,7 +86,7 @@ function ProductoEnCarrito(prod, cant) {
     this.cantidad = cant;
 }
 
-var botonesProductos = document.getElementsByClassName("agregarCarrito");
+var botonesAgregarCarrito = document.getElementsByClassName("agregarCarrito");
 
 function agregarEventosProductos(botones) {
     for (let i = 0; i < botones.length; i++) {
@@ -106,13 +106,12 @@ function Comparar(baseDeDatos, codigoBoton) {
 }
 var carrito = new Carrito();
 carrito.levantarProductosEnNavegador();
-agregarEventosProductos(botonesProductos);
+agregarEventosProductos(botonesAgregarCarrito);
 
 console.log(carrito.productos);
 
 $("#cart").append(carrito.mostrarCarrito());
 
-var botonesAgregarCarrito = $(".agregarCarrito");
 function imprimirDatosProducto(botonesAgregar, baseDeDatos) {
     for (let i = 0; i < botonesAgregar.length; i++) {
         let padre = $(botonesAgregar[i]).parent();
@@ -150,7 +149,7 @@ $(".grid").append(
 $(".botonOcultarNav button").click(function () {
     $(".navBar").slideToggle(500);
 });
-
+/* 
 var botonesDesplegablesMobile = $(".desplegable i");
 function botonesDesplegables(botones) {
     for (let i = 0; i > botones.length; i++) {
@@ -160,7 +159,7 @@ function botonesDesplegables(botones) {
         });
     }
 }
-botonesDesplegables(botonesDesplegablesMobile);
+botonesDesplegables(botonesDesplegablesMobile); */
 
 var baseDatos = [];
 $.get("/js/baseDatos.json", function (data) {
@@ -201,3 +200,52 @@ function cantidadProductosCarrito(carritoProductos) {
     $(".carritoNavBar i").append("<span>" + cantidadProductos + "</span>");
     $(".carritoNavBar i span").addClass("animate__animated animate__fadeIn animate__fast");
 }
+
+/* var crearProducto = (producto) => {
+    let crear = new Producto(
+        producto.tipo,
+        producto.marca,
+        producto.modelo,
+        producto.precio,
+        producto.compatibilidad,
+        producto.urlImagen,
+        producto.codigo
+    );
+}; */
+var botonesRestar = $(".rest");
+var botonesSumar = $(".sum");
+
+var sumaUnidades = (sumar) => {
+    for (let i = 0; i < sumar.length; i++) {
+        $(sumar[i]).click(() => {
+            let padre = $(sumar[i]).parent();
+            let valorActual = Number($(padre).find("input").val());
+            if (valorActual < 99) {
+                console.log(valorActual);
+                $(padre)
+                    .find("input")
+                    .val(valorActual + 1);
+                console.log($(padre).find("input").val());
+            }
+        });
+    }
+};
+
+var restaUnidades = (restar) => {
+    for (let i = 0; i < restar.length; i++) {
+        $(restar[i]).click(() => {
+            let padre = $(restar[i]).parent();
+            let valorActual = Number($(padre).find("input").val());
+            if (valorActual > 1) {
+                console.log(valorActual);
+                $(padre)
+                    .find("input")
+                    .val(valorActual - 1);
+                console.log($(padre).find("input").val());
+            }
+        });
+    }
+};
+
+sumaUnidades(botonesSumar);
+restaUnidades(botonesRestar);

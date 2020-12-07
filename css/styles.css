@@ -153,7 +153,7 @@ main #mains .row {
   margin-right: 0; }
   main #mains .row > div {
     display: grid;
-    grid-template-rows: 90% 10%;
+    grid-template-rows: 80% 10% 10%;
     grid-template-columns: auto;
     align-items: center;
     justify-content: center;
@@ -161,6 +161,12 @@ main #mains .row {
     border-radius: 5px;
     padding: 0;
     margin: 0.1rem 0; }
+    main #mains .row > div .unidades {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr; }
+      main #mains .row > div .unidades input {
+        width: 100%;
+        text-align: center; }
     main #mains .row > div > div {
       height: 100%;
       transition: all 1s;
