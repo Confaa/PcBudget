@@ -33,7 +33,7 @@ function Carrito() {
     };
 
     this.mostrarCarrito = function () {
-        var output = "";
+        let output = "";
 
         for (let i = 0; i < this.productos.length; i++) {
             output +=
@@ -86,27 +86,51 @@ function ProductoEnCarrito(prod, cant) {
     this.cantidad = cant;
 }
 
-var botonesAgregarCarrito = document.getElementsByClassName("agregarCarrito");
+let botonesAgregarCarrito = document.getElementsByClassName("agregarCarrito");
 
-function agregarEventosProductos(botones) {
+let agregarEventosProductos = (botones) => {
     for (let i = 0; i < botones.length; i++) {
+        let padre = $(botones[i]).parent();
         botones[i].addEventListener("click", function () {
-            Comparar(baseDatos, botones[i].value);
+            let cantidad = Number($(padre).find("input").val());
+            $(padre).find("input").val(1);
+            comparar(baseDatos, botones[i].value, cantidad);
         });
     }
-}
+};
 
-function Comparar(baseDeDatos, codigoBoton) {
+function comparar(baseDeDatos, codigoBoton, cantidad) {
     for (i = 0; i < baseDeDatos.length; i++) {
         if (baseDeDatos[i].codigo == codigoBoton) {
-            let aux = new ProductoEnCarrito(baseDeDatos[i], 1);
-            carrito.agregarProducto(aux);
+            esta = estaEnCarrito(carrito.productos, codigoBoton, cantidad);
+            if (esta == false) {
+                let aux = new ProductoEnCarrito(baseDeDatos[i], cantidad);
+                carrito.agregarProducto(aux);
+            }
         }
     }
 }
-var carrito = new Carrito();
-carrito.levantarProductosEnNavegador();
+
+let estaEnCarrito = (carritoProductos, codigo, cant) => {
+    let esta = false;
+    for (let i = 0; i < carritoProductos.length; i++) {
+        if (carritoProductos[i].productoEnCarrito.codigo == codigo) {
+            console.log(cant);
+            console.log(carritoProductos[i].cantidad);
+            carritoProductos[i].cantidad += cant;
+            console.log(carritoProductos[i].cantidad);
+            esta = true;
+            localStorage.setItem("carrito", JSON.stringify(carritoProductos));
+            cantidadProductosCarrito(carritoProductos);
+            alert("Cantidad actualizada");
+        }
+    }
+    return esta;
+};
 agregarEventosProductos(botonesAgregarCarrito);
+
+let carrito = new Carrito();
+carrito.levantarProductosEnNavegador();
 
 console.log(carrito.productos);
 
@@ -150,7 +174,7 @@ $(".botonOcultarNav button").click(function () {
     $(".navBar").slideToggle(500);
 });
 /* 
-var botonesDesplegablesMobile = $(".desplegable i");
+let botonesDesplegablesMobile = $(".desplegable i");
 function botonesDesplegables(botones) {
     for (let i = 0; i > botones.length; i++) {
         botones[i].click(function () {
@@ -161,18 +185,18 @@ function botonesDesplegables(botones) {
 }
 botonesDesplegables(botonesDesplegablesMobile); */
 
-var baseDatos = [];
+let baseDatos = [];
 $.get("/js/baseDatos.json", function (data) {
     baseDatos = data;
     imprimirDatosProducto(botonesAgregarCarrito, baseDatos);
 });
 
 function borrarProductoDom(codigoBorrar) {
-    var botonesBorrarProductos = $(".elementoCarrito button");
-    var padreBotones;
+    let botonesBorrarProductos = $(".elementoCarrito button");
+
     for (let i = 0; i < botonesBorrarProductos.length; i++) {
         if (codigoBorrar == botonesBorrarProductos[i].value) {
-            padreBotones = $(botonesBorrarProductos[i]).parent();
+            let padreBotones = $(botonesBorrarProductos[i]).parent();
             padreBotones.remove();
         }
     }
@@ -201,7 +225,7 @@ function cantidadProductosCarrito(carritoProductos) {
     $(".carritoNavBar i span").addClass("animate__animated animate__fadeIn animate__fast");
 }
 
-/* var crearProducto = (producto) => {
+/* let crearProducto = (producto) => {
     let crear = new Producto(
         producto.tipo,
         producto.marca,
@@ -212,10 +236,10 @@ function cantidadProductosCarrito(carritoProductos) {
         producto.codigo
     );
 }; */
-var botonesRestar = $(".rest");
-var botonesSumar = $(".sum");
+let botonesRestar = $(".rest");
+let botonesSumar = $(".sum");
 
-var sumaUnidades = (sumar) => {
+let sumaUnidades = (sumar) => {
     for (let i = 0; i < sumar.length; i++) {
         $(sumar[i]).click(() => {
             let padre = $(sumar[i]).parent();
@@ -231,7 +255,7 @@ var sumaUnidades = (sumar) => {
     }
 };
 
-var restaUnidades = (restar) => {
+let restaUnidades = (restar) => {
     for (let i = 0; i < restar.length; i++) {
         $(restar[i]).click(() => {
             let padre = $(restar[i]).parent();
