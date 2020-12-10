@@ -53,7 +53,9 @@ function Carrito() {
                 "</p>" +
                 "</span>" +
                 "<p>Precio: " +
-                this.productos[i].productoEnCarrito.precio +
+                (this.productos[i].productoEnCarrito.precio * this.productos[i].cantidad).toFixed(
+                    2
+                ) +
                 "$</p>" +
                 "<button class='btn btn-danger' onclick='carrito.eliminarProducto(event.target.value)' value='" +
                 this.productos[i].productoEnCarrito.codigo +
@@ -206,7 +208,9 @@ function calcularTotal(carritoProductos) {
     let totalCompra = 0;
 
     for (let i = 0; i < carritoProductos.length; i++) {
-        totalCompra += Number(carritoProductos[i].productoEnCarrito.precio);
+        totalCompra += Number(
+            carritoProductos[i].productoEnCarrito.precio * carritoProductos[i].cantidad
+        );
     }
     totalCompra = totalCompra.toFixed(2);
 
@@ -216,10 +220,7 @@ function calcularTotal(carritoProductos) {
     return totalCompra;
 }
 function cantidadProductosCarrito(carritoProductos) {
-    let cantidadProductos = 0;
-    for (let i = 0; i < carritoProductos.length; i++) {
-        cantidadProductos += Number(carritoProductos[i].cantidad);
-    }
+    let cantidadProductos = Number(carritoProductos.length);
 
     $(".carritoNavBar i").append("<span>" + cantidadProductos + "</span>");
     $(".carritoNavBar i span").addClass("animate__animated animate__fadeIn animate__fast");
