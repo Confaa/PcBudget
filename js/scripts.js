@@ -188,7 +188,7 @@ function botonesDesplegables(botones) {
 botonesDesplegables(botonesDesplegablesMobile); */
 
 let baseDatos = [];
-$.get("/js/baseDatos.json", function (data) {
+$.get("../js/baseDatos.json", function (data) {
     baseDatos = data;
     imprimirDatosProducto(botonesAgregarCarrito, baseDatos);
 });
