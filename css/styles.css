@@ -9,18 +9,17 @@ header {
     justify-content: space-between; }
     header section a {
       color: white; }
-      header section a .carritoNavBar {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center; }
-        header section a .carritoNavBar i {
-          font-size: 3rem;
-          margin-left: auto;
-          margin: 0 1rem; }
-        header section a .carritoNavBar p {
-          margin: 0; }
-        header section a .carritoNavBar span {
+    header section .carritoNavBar {
+      display: row;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center; }
+      header section .carritoNavBar a > i {
+        font-size: 3rem;
+        margin-left: auto;
+        margin: 0 1rem;
+        transition: all 0.7s; }
+        header section .carritoNavBar a > i span {
           position: absolute;
           text-align: center;
           transform: translate(-0.5rem, -0.2rem);
@@ -30,6 +29,38 @@ header {
           border-radius: 20px;
           font-size: 1.2rem;
           font-weight: bold; }
+      header section .carritoNavBar ul {
+        visibility: hidden;
+        position: absolute;
+        background-color: white;
+        transform: translateX(-35%);
+        margin: 0;
+        margin-top: 0.2rem;
+        border-radius: 5px; }
+        header section .carritoNavBar ul li {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          list-style: none;
+          min-width: 100%;
+          padding: 0;
+          color: black; }
+          header section .carritoNavBar ul li p {
+            display: inline;
+            padding: 0 0.25rem;
+            margin: 0.1rem 0;
+            white-space: nowrap; }
+          header section .carritoNavBar ul li i {
+            color: red;
+            margin-left: auto;
+            padding: 0.5rem; }
+    header section .carritoNavBar:hover ul {
+      transition-delay: 0.6s;
+      visibility: visible; }
+    header section .carritoNavBar:hover i {
+      transform: rotate(180deg); }
+    header section .carritoNavBar:hover span {
+      display: none; }
     header section a:hover {
       color: white;
       list-style: none;
@@ -238,5 +269,7 @@ body {
   margin: 0; }
   .navegacion ul li {
     padding: 0.25rem; }
-    .navegacion ul li i {
+    .navegacion ul li .fa-home {
+      color: white; }
+    .navegacion ul li .fa-angle-double-right {
       color: orange; }

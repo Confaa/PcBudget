@@ -15,20 +15,17 @@ header {
         justify-content: space-between;
         a {
             color: white;
-
-            .carritoNavBar {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                i {
-                    font-size: 3rem;
-                    margin-left: auto;
-                    margin: 0 1rem;
-                }
-                p {
-                    margin: 0;
-                }
+        }
+        .carritoNavBar {
+            display: row;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            a > i {
+                font-size: 3rem;
+                margin-left: auto;
+                margin: 0 1rem;
+                transition: all 0.7s;
                 span {
                     position: absolute;
                     text-align: center;
@@ -40,6 +37,47 @@ header {
                     font-size: 1.2rem;
                     font-weight: bold;
                 }
+            }
+            ul {
+                visibility: hidden;
+                position: absolute;
+                background-color: white;
+                transform: translateX(-35%);
+                margin: 0;
+                margin-top: 0.2rem;
+                border-radius: 5px;
+                li {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    list-style: none;
+                    min-width: 100%;
+                    padding: 0;
+                    color: black;
+                    p {
+                        display: inline;
+                        padding: 0 0.25rem;
+                        margin: 0.1rem 0;
+                        white-space: nowrap;
+                    }
+                    i {
+                        color: red;
+                        margin-left: auto;
+                        padding: 0.5rem;
+                    }
+                }
+            }
+        }
+        .carritoNavBar:hover {
+            ul {
+                transition-delay: 0.6s;
+                visibility: visible;
+            }
+            i {
+                transform: rotate(180deg);
+            }
+            span {
+                display: none;
             }
         }
         a:hover {

@@ -274,3 +274,23 @@ let restaUnidades = (restar) => {
 
 sumaUnidades(botonesSumar);
 restaUnidades(botonesRestar);
+
+let carritoNavBar = (carritoProductos) => {
+    let output = "";
+    for (let i = 0; i < carritoProductos.length; i++) {
+        output +=
+            "<li><p>" +
+            carritoProductos[i].cantidad +
+            "x </p>" +
+            "<p>" +
+            carritoProductos[i].productoEnCarrito.marca +
+            " " +
+            carritoProductos[i].productoEnCarrito.modelo +
+            "</p>" +
+            "<i class='fas fa-times'></i>" +
+            "</li>";
+    }
+    return output;
+};
+
+$(".carritoNavBar ul").append(carritoNavBar(carrito.productos));

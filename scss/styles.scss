@@ -43,11 +43,12 @@ body {
         margin: 0;
         li {
             padding: 0.25rem;
-            i {
+            .fa-home {
+                color: white;
+            }
+            .fa-angle-double-right {
                 color: orange;
             }
         }
     }
 }
-
-
