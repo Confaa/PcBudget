@@ -52,9 +52,10 @@ function Carrito() {
                 "</p>" +
                 "</span>" +
                 "<p>Precio: " +
-                (this.productos[i].productoEnCarrito.precio * this.productos[i].cantidad).toFixed(
-                    2
-                ) +
+                (
+                    this.productos[i].productoEnCarrito.precio *
+                    this.productos[i].cantidad
+                ).toFixed(2) +
                 "$</p>" +
                 "<button class='btn btn-danger' onclick='carrito.eliminarProducto(event.target.value)' value='" +
                 this.productos[i].productoEnCarrito.codigo +
@@ -124,6 +125,9 @@ let estaEnCarrito = (carritoProductos, codigo, cant) => {
             localStorage.setItem("carrito", JSON.stringify(carritoProductos));
             cantidadProductosCarrito(carritoProductos);
             alert("Cantidad actualizada");
+            $(
+                ".carritoNavBar ul li:nth-child(" + (i + 1) + ") p:first-child"
+            ).text(carritoProductos[i].cantidad + "x");
         }
     }
     return esta;
@@ -215,7 +219,8 @@ function calcularTotal(carritoProductos) {
 
     for (let i = 0; i < carritoProductos.length; i++) {
         totalCompra += Number(
-            carritoProductos[i].productoEnCarrito.precio * carritoProductos[i].cantidad
+            carritoProductos[i].productoEnCarrito.precio *
+                carritoProductos[i].cantidad
         );
     }
     totalCompra = totalCompra.toFixed(2);
@@ -229,7 +234,9 @@ function cantidadProductosCarrito(carritoProductos) {
     let cantidadProductos = Number(carritoProductos.length);
 
     $(".carritoNavBar i").append("<span>" + cantidadProductos + "</span>");
-    $(".carritoNavBar i span").addClass("animate__animated animate__fadeIn animate__fast");
+    $(".carritoNavBar i span").addClass(
+        "animate__animated animate__fadeIn animate__fast"
+    );
 }
 
 /* let crearProducto = (producto) => {
@@ -299,7 +306,8 @@ let carritoNavBar = (carritoProductos) => {
             "</li>";
     }
     if (carritoProductos.length > 0) {
-        output += "<a href='/views/carrito.html' class='irCarrito'>Ir al carrito</a>";
+        output +=
+            "<a href='/views/carrito.html' class='irCarrito'>Ir al carrito</a>";
     }
     return output;
 };
