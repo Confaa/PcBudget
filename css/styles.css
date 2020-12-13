@@ -57,9 +57,19 @@ header {
             padding: 0.5rem; }
           header section .carritoNavBar ul li i:hover {
             cursor: pointer; }
+        header section .carritoNavBar ul .irCarrito {
+          color: white;
+          display: block;
+          text-align: center;
+          background-color: #2871cc;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          padding: 0.5rem 0;
+          width: 100%;
+          cursor: pointer; }
     header section .carritoNavBar:hover ul {
       transition: all 0.5s;
-      transition-delay: 0.5s;
+      transition-delay: 0.4s;
       visibility: visible;
       opacity: 1; }
     header section .carritoNavBar:hover i {

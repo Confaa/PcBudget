@@ -298,8 +298,10 @@ let carritoNavBar = (carritoProductos) => {
             "'></i>" +
             "</li>";
     }
+    if (carritoProductos.length > 0) {
+        output += "<a href='/views/carrito.html' class='irCarrito'>Ir al carrito</a>";
+    }
     return output;
 };
 
 $(".carritoNavBar ul").append(carritoNavBar(carrito.productos));
-
