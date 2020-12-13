@@ -17,10 +17,10 @@ header {
             color: white;
         }
         .carritoNavBar {
-            display: row;
-            flex-direction: row;
+            /* display: row; */
+            /* flex-direction: row;
             align-items: center;
-            justify-content: center;
+            justify-content: center; */
             a > i {
                 font-size: 3rem;
                 margin-left: auto;
@@ -42,7 +42,7 @@ header {
                 visibility: hidden;
                 position: absolute;
                 background-color: white;
-                transform: translateX(-35%);
+                transform: translateX(-30%);
                 margin: 0;
                 border-radius: 5px;
                 opacity: 0;
@@ -55,11 +55,12 @@ header {
                     min-width: 100%;
                     padding: 0;
                     color: black;
+                    border-bottom: 2px solid black;
                     p {
                         display: inline;
                         padding: 0 0.25rem;
                         margin: 0.1rem 0;
-                        white-space: nowrap;
+                        white-space: normal;
                     }
                     i {
                         color: red;
