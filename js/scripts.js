@@ -12,7 +12,6 @@ function Carrito() {
         this.productos = this.productos.filter(function (productos) {
             return productos.productoEnCarrito.codigo != codigoBorrar;
         });
-        console.log(codigoBorrar);
         localStorage.setItem("carrito", JSON.stringify(this.productos));
         borrarProductoDom(codigoBorrar);
         calcularTotal(this.productos);
@@ -202,6 +201,13 @@ function borrarProductoDom(codigoBorrar) {
             padreBotones.remove();
         }
     }
+    let botonesBorrarNav = $(".carritoNavBar li i");
+    for (let i = 0; i < botonesBorrarNav.length; i++) {
+        if (codigoBorrar == $(botonesBorrarNav[i]).attr("value")) {
+            let padre = $(botonesBorrarNav[i]).parent();
+            $(padre).remove();
+        }
+    }
 }
 
 function calcularTotal(carritoProductos) {
@@ -287,10 +293,13 @@ let carritoNavBar = (carritoProductos) => {
             " " +
             carritoProductos[i].productoEnCarrito.modelo +
             "</p>" +
-            "<i class='fas fa-times'></i>" +
+            "<i class='fas fa-times' onclick='carrito.eliminarProducto(attributes[2].value)' value='" +
+            carritoProductos[i].productoEnCarrito.codigo +
+            "'></i>" +
             "</li>";
     }
     return output;
 };
 
 $(".carritoNavBar ul").append(carritoNavBar(carrito.productos));
+
