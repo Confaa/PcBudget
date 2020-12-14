@@ -102,9 +102,11 @@ let estaEnCarrito = (carritoProductos, codigo, cant) => {
             localStorage.setItem("carrito", JSON.stringify(carritoProductos));
             cantidadProductosCarrito(carritoProductos);
             alert("Cantidad actualizada");
-            $(".carritoNavBar ul li:nth-child(" + (i + 1) + ") p:first-child").text(
-                carritoProductos[i].cantidad + "x"
-            );
+            $(
+                ".carritoNavBar ul li:nth-child(" +
+                    (carritoProductos.length - i) +
+                    ") p:first-child"
+            ).text(carritoProductos[i].cantidad + "x");
         }
     }
     return esta;
