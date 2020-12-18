@@ -1,12 +1,15 @@
 @import "colors";
 
 #cart {
+    border: 2px solid white;
+    border-radius: 5px;
     .elementoCarrito {
-        border: 2px solid white;
         display: grid;
-        grid-template-columns: 20% 35% 35% 10%;
+        grid-template-columns: 22% 35% 35% 8%;
         align-items: center;
         background-color: $fondoProductos;
+        height: 10rem;
+        border-bottom: 2px solid white;
 
         img {
             padding: 0.5rem;
@@ -28,6 +31,30 @@
             height: 100%;
             font-size: 2rem;
             border-left: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            i {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    > :last-child {
+        border-top: none;
+        p {
+            font-size: 2rem;
+            text-align: center;
+            margin: 0;
+            background-color: $fondoProductos;
+        }
+        div {
+            display: flex;
+            border-top: 2px solid white;
+            button {
+                width: 100%;
+                border-radius: 0;
+            }
         }
     }
 }

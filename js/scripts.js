@@ -38,10 +38,13 @@ function Carrito() {
             agregarProductoNav(this.productos[i]);
         }
         $("#cart").append(
-            "<p>Total de la compra: <span id='total'>" +
+            "<div>" +
+                "<p>Total de la compra: <span id='total'>" +
                 calcularTotal(this.productos) +
                 "</span> $</p>" +
-                "<button class='btn btn-danger' onclick='carrito.vaciarCarrito()'>Vaciar carrito</button> "
+                "<div><button class='btn btn-danger' onclick='carrito.vaciarCarrito()'>Vaciar carrito</button>" +
+                "<button class='btn btn-primary'>Finalizar Compra</button></div>" +
+                "</div>"
         );
         $(".carritoNavBar ul").append(
             "<a href='/views/carrito.html' class='irCarrito'>Ir al carrito</a>"
@@ -203,8 +206,7 @@ function calcularTotal(carritoProductos) {
     }
     totalCompra = totalCompra.toFixed(2);
 
-    let cambiarEnDom = $("#total");
-    cambiarEnDom.text(totalCompra);
+    $("#total").text(totalCompra);
 
     return totalCompra;
 }
