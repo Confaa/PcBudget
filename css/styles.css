@@ -69,7 +69,8 @@ header {
       transition: all 0.5s;
       transition-delay: 0.4s;
       visibility: visible;
-      opacity: 1; }
+      opacity: 1;
+      overflow-y: scroll; }
     header section .carritoNavBar:hover i {
       transform: rotate(180deg); }
     header section .carritoNavBar:hover span {
@@ -234,17 +235,25 @@ main #mains .row {
 #cart .elementoCarrito {
   border: 2px solid white;
   display: grid;
-  grid-template-columns: 4fr 4fr 4fr 1fr;
+  grid-template-columns: 20% 35% 35% 10%;
   align-items: center;
-  height: 12rem;
   background-color: #2b2b2b; }
+  #cart .elementoCarrito img {
+    padding: 0.5rem; }
+  #cart .elementoCarrito > p {
+    margin: 0;
+    padding-right: 1rem;
+    text-align: center; }
   #cart .elementoCarrito span {
     display: flex;
     flex-direction: column;
-    padding: 1rem; }
+    padding-left: 3rem; }
+    #cart .elementoCarrito span p {
+      margin-bottom: 0.5rem; }
   #cart .elementoCarrito button {
     height: 100%;
-    font-size: 2rem; }
+    font-size: 2rem;
+    border-left: 2px solid white; }
 
 footer {
   background-color: #770018; }
