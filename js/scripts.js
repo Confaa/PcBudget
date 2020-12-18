@@ -198,8 +198,7 @@ function calcularTotal(carritoProductos) {
 
     for (let i = 0; i < carritoProductos.length; i++) {
         totalCompra += Number(
-            carritoProductos[i].productoEnCarrito.precio *
-                carritoProductos[i].cantidad
+            carritoProductos[i].productoEnCarrito.precio * carritoProductos[i].cantidad
         );
     }
     totalCompra = totalCompra.toFixed(2);
@@ -216,10 +215,9 @@ function cantidadProductosCarrito(carritoProductos) {
     } else {
         $(".irCarrito").css("display", "block");
     }
+    $(".carritoNavBar i span").remove();
     $(".carritoNavBar i").append("<span>" + cantidadProductos + "</span>");
-    $(".carritoNavBar i span").addClass(
-        "animate__animated animate__fadeIn animate__fast"
-    );
+    $(".carritoNavBar i span").addClass("animate__animated animate__fadeIn animate__fast");
 }
 
 /* let crearProducto = (producto) => {
@@ -271,8 +269,6 @@ let restaUnidades = (restar) => {
 sumaUnidades(botonesSumar);
 restaUnidades(botonesRestar);
 
-$(".carritoNavBar ul").append(carritoNavBar(carrito.productos));
-
 function agregarProductoNav(producto) {
     let output =
         "<li><p>" +
@@ -312,7 +308,9 @@ function agregarProductoCarrito(producto) {
         "$</p>" +
         "<button class='btn btn-danger' onclick='carrito.eliminarProducto(event.target.value)' value='" +
         producto.productoEnCarrito.codigo +
-        "'><i class='fas fa-trash-alt'></i></button>" +
+        "'><i class='fas fa-trash-alt' onclick='carrito.eliminarProducto(attributes[2].value)' value='" +
+        producto.productoEnCarrito.codigo +
+        "'></i></button>" +
         "</div>";
 
     $("#cart").prepend(output);
