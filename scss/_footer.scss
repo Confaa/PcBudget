@@ -1,10 +1,20 @@
+@import "colors";
+
 footer {
-    background-color: rgb(119, 0, 24);
+    background-color: $fondoFooter;
     .copyright {
         padding: 0.5rem;
         text-align: center;
+        font-style: italic;
         p {
             display: inline;
+        }
+        a {
+            color: orange;
+            font-weight: 600;
+        }
+        a:hover {
+            text-decoration: none;
         }
     }
 }

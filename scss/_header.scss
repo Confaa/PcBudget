@@ -44,7 +44,7 @@ header {
                 transform: translateY(3.05rem);
                 margin: 0;
                 border-radius: 5px;
-                background-color: rgba($color: #fff, $alpha: 0);
+                background-color: rgba(#fff, 0);
                 z-index: 9999;
                 max-height: 50vh;
                 overflow: auto;
@@ -90,7 +90,7 @@ header {
                 transition: all 0.5s;
                 transition-delay: 0.4s;
                 visibility: visible;
-                background-color: rgba($color: #fff, $alpha: 0.75);
+                background-color: rgba(#fff, 0.75);
             }
             i {
                 transform: rotate(180deg);

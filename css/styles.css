@@ -197,44 +197,46 @@ main #index .row > div {
 main #mains {
   margin-bottom: 1rem; }
   main #mains .row {
-    justify-content: left;
-    margin-left: 0;
-    margin-right: 0; }
+    margin: 0; }
     main #mains .row > div {
       display: grid;
-      grid-template-rows: 80% 10% 10%;
-      grid-template-columns: auto;
-      align-items: center;
+      grid-template-rows: 8fr 1fr 1fr;
       justify-content: center;
-      border: 0.2rem solid transparent;
-      border-radius: 5px;
+      border: 0.25rem solid black;
+      border-radius: 0.5rem;
       padding: 0;
-      margin: 0.1rem 0; }
-      main #mains .row > div .unidades {
-        display: grid;
-        grid-template-columns: 1fr 3fr 1fr; }
-        main #mains .row > div .unidades input {
-          width: 100%;
-          text-align: center; }
+      margin: 1rem, 0;
+      background-color: #2b2b2b; }
       main #mains .row > div > div {
-        height: 100%;
-        transition: all 1s;
+        transition: all 0.75s;
         padding: 0.5rem;
-        margin: 0.5rem auto;
-        background-color: #2b2b2b;
-        border: 0.1rem solid white;
-        border-radius: 5px;
         display: flex;
         flex-direction: column;
-        justify-content: end; }
-        main #mains .row > div > div img {
-          margin-bottom: auto; }
-        main #mains .row > div > div .textoComponente p {
-          margin: 0;
-          text-align: center; }
+        justify-content: center; }
+        main #mains .row > div > div .textoComponente {
+          margin-top: auto; }
+          main #mains .row > div > div .textoComponente p {
+            margin: 0;
+            text-align: center; }
       main #mains .row > div > div:hover {
-        background-color: rgba(119, 0, 24, 0.4);
-        scale: 1.015; }
+        background-color: rgba(255, 255, 255, 0.75);
+        color: black;
+        /* scale: 1.015; */ }
+      main #mains .row > div .unidades {
+        display: grid;
+        grid-template-columns: 25% 50% 25%; }
+        main #mains .row > div .unidades input {
+          width: 100%;
+          text-align: center;
+          border-radius: 0;
+          border: 0; }
+        main #mains .row > div .unidades button {
+          border-radius: 0; }
+      main #mains .row > div > button {
+        border-radius: 0;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        font-size: 1.2rem; }
 
 #cart {
   border: 2px solid white;
@@ -285,9 +287,15 @@ footer {
   background-color: #770018; }
   footer .copyright {
     padding: 0.5rem;
-    text-align: center; }
+    text-align: center;
+    font-style: italic; }
     footer .copyright p {
       display: inline; }
+    footer .copyright a {
+      color: orange;
+      font-weight: 600; }
+    footer .copyright a:hover {
+      text-decoration: none; }
 
 * {
   margin: 0;
