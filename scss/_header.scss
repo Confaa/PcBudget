@@ -132,7 +132,6 @@ header {
                     transform: translate(-0.75rem, 0.3rem);
                     white-space: nowrap;
                     border-radius: 5px;
-                    max-height: 0;
                 }
                 i {
                     margin-left: 0.5rem;
@@ -205,18 +204,17 @@ header {
 
         justify-content: left;
         li {
-            display: none;
             text-align: center;
             ul {
                 position: relative;
+                display: none;
             }
         }
-        li:hover {
+        /* li:hover {
             ul {
-                max-height: 400px;
-                transition: 1s ease-in-out;
+                display: block;
             }
-        }
+        } */
     }
     .botonOcultarNav {
         display: none;
@@ -229,6 +227,7 @@ header {
         li {
             ul {
                 position: absolute;
+                max-height: 0;
             }
         }
         li:hover {

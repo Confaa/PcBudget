@@ -105,8 +105,7 @@ header {
         overflow: hidden;
         transform: translate(-0.75rem, 0.3rem);
         white-space: nowrap;
-        border-radius: 5px;
-        max-height: 0; }
+        border-radius: 5px; }
       header nav .navBar li i {
         margin-left: 0.5rem;
         height: 100%; }
@@ -158,15 +157,17 @@ header {
     display: flex; }
   .navBar {
     flex-direction: column;
-    justify-content: left; }
+    justify-content: left;
+    /* li:hover {
+            ul {
+                display: block;
+            }
+        } */ }
     .navBar li {
-      display: none;
       text-align: center; }
       .navBar li ul {
-        position: relative; }
-    .navBar li:hover ul {
-      max-height: 400px;
-      transition: 1s ease-in-out; }
+        position: relative;
+        display: none; }
   .botonOcultarNav {
     display: none; } }
 
@@ -175,7 +176,8 @@ header {
     flex-direction: row;
     justify-content: center; }
     .navBar li ul {
-      position: absolute; }
+      position: absolute;
+      max-height: 0; }
     .navBar li:hover {
       background-color: white;
       color: black; }

@@ -160,17 +160,6 @@ $(".grid").append(
 $(".botonOcultarNav button").click(function () {
     $(".navBar").slideToggle(500);
 });
-/* 
-let botonesDesplegablesMobile = $(".desplegable i");
-function botonesDesplegables(botones) {
-    for (let i = 0; i > botones.length; i++) {
-        botones[i].click(function () {
-            console.log(i);
-            $(".desplegable").css("max-height", "400px");
-        });
-    }
-}
-botonesDesplegables(botonesDesplegablesMobile); */
 
 let baseDatos = [];
 $.get("./../js/baseDatos.json", function (data) {
@@ -321,3 +310,15 @@ function agregarProductoCarrito(producto) {
 /* if (carritoProductos.length > 0) {
     output += "<a href='/views/carrito.html' class='irCarrito'>Ir al carrito</a>";
 } */
+
+let dropdownNavMobile = $("ul .desplegable");
+console.log(dropdownNavMobile);
+
+function desplegableMobile(botones) {
+    for (let i = 0; i < botones.length; i++) {
+        $(botones[i]).click(() => {
+            $(botones[i]).find("ul").toggle();
+        });
+    }
+}
+desplegableMobile(dropdownNavMobile);
