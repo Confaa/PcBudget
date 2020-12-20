@@ -157,14 +157,10 @@ header {
     display: flex; }
   .navBar {
     flex-direction: column;
-    justify-content: left;
-    /* li:hover {
-            ul {
-                display: block;
-            }
-        } */ }
+    justify-content: left; }
     .navBar li {
-      text-align: center; }
+      text-align: center;
+      display: none; }
       .navBar li ul {
         position: relative;
         display: none; }
@@ -193,11 +189,11 @@ header {
   min-height: 0vh;
   transition: 0.5s all linear;
   transition-delay: 0.5s; }
-  .aux button {
-    display: none; }
   .aux h1 {
     display: none; }
   .aux p {
+    display: none; }
+  .aux button {
     display: none; }
 
 .cortina {
@@ -217,6 +213,10 @@ header {
     display: block; }
   .cortina p {
     display: block; }
+
+main #index > p {
+  font-size: 1.5rem;
+  text-align: center; }
 
 main #index .indexNav {
   display: grid;
@@ -247,7 +247,7 @@ main #index .indexNav {
       border-radius: 15px;
       border: 2px solid red;
       transition: 1s all linear;
-      transition-delay: 0.4s; }
+      transition-delay: 0.3s; }
       main #index .indexNav > div span small {
         display: none;
         background-color: rgba(0, 0, 0, 0.6);
@@ -371,6 +371,18 @@ main #mains {
         border-bottom-left-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
         font-size: 1.2rem; }
+
+@media (max-width: 991.98px) {
+  #mains p {
+    font-size: 0.8rem; }
+  #mains i {
+    font-size: 1.1rem; } }
+
+@media (min-width: 992px) {
+  #mains p {
+    font-size: 1rem; }
+  #mains i {
+    font-size: 1.4rem; } }
 
 #cart {
   border: 2px solid white;

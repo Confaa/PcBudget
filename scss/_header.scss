@@ -205,16 +205,12 @@ header {
         justify-content: left;
         li {
             text-align: center;
+            display: none;
             ul {
                 position: relative;
                 display: none;
             }
         }
-        /* li:hover {
-            ul {
-                display: block;
-            }
-        } */
     }
     .botonOcultarNav {
         display: none;

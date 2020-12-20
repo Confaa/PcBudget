@@ -5,13 +5,13 @@
     min-height: 0vh;
     transition: 0.5s all linear;
     transition-delay: 0.5s;
-    button {
-        display: none;
-    }
     h1 {
         display: none;
     }
     p {
+        display: none;
+    }
+    button {
         display: none;
     }
 }
@@ -40,6 +40,10 @@
 
 main {
     #index {
+        > p {
+            font-size: 1.5rem;
+            text-align: center;
+        }
         .indexNav {
             display: grid;
             justify-content: center;
@@ -71,7 +75,7 @@ main {
                     border-radius: 15px;
                     border: 2px solid red;
                     transition: 1s all linear;
-                    transition-delay: 0.4s;
+                    transition-delay: 0.3s;
 
                     small {
                         display: none;
