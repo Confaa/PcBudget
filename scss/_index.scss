@@ -1,14 +1,115 @@
 @import "colors";
+@import "mixins";
 
 main {
     #index {
-        .row {
+        .indexNav {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+
             > div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border: 2px solid white;
+                border-radius: 15px;
                 height: 10rem;
+                transition: 1s all linear;
+                margin: 1rem;
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: red;
+                    transition: 1s all linear;
+                    height: 100%;
+                    width: 100%;
+                }
+                span {
+                    display: flex;
+                    justify-content: end;
+                    align-items: end;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(black, 1);
+                    padding: 1rem;
+                    border-radius: 15px;
+                    border: 2px solid red;
+                    transition: 1s all linear;
+                    transition-delay: 0.4s;
+
+                    small {
+                        display: none;
+                        background-color: rgba(black, 0.6);
+                        border-radius: 10px;
+                        padding: 0.5rem;
+                    }
+                }
+            }
+            > div:hover {
+                color: white;
+
+                a {
+                    color: white;
+                    text-decoration: none;
+                }
+                span {
+                    background-color: rgba(black, 0.3);
+                    border-color: white;
+                    color: rgb(255, 79, 79);
+                    small {
+                        display: inline;
+                        position: absolute;
+                    }
+                }
+            }
+            > div:nth-child(1) {
+                background: url("../img/index/socketAm4.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(2) {
+                background: url("../img/index/socket1151.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(3) {
+                background: url("../img/index/amdRyzen.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(4) {
+                background: url("../img/index/itelCore.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(5) {
+                background: url("../img/index/cooler.jpg");
+                @include colocacionImagenesIndex;
+                background-position: top;
+            }
+            > div:nth-child(6) {
+                background: url("../img/index/gpu.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(7) {
+                background: url("../img/index/ram.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(8) {
+                background: url("../img/index/ssd.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(9) {
+                background: url("../img/index/case.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(10) {
+                background: url("../img/index/monitors.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(11) {
+                background: url("../img/index/w10.jpg");
+                @include colocacionImagenesIndex;
+            }
+            > div:nth-child(12) {
+                background: url("../img/index/fuente.jpg");
+                @include colocacionImagenesIndex;
+                background-position: top;
             }
         }
     }
