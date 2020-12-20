@@ -14,19 +14,14 @@ header {
       flex-direction: row;
       justify-content: center; }
       header section .carritoNavBar a > i {
-        font-size: 3rem;
-        transition: all 0.6s; }
-        header section .carritoNavBar a > i span {
-          position: absolute;
-          text-align: center;
-          transform: translate(-0.5rem, -0.2rem);
-          height: 1.5rem;
-          width: auto;
-          min-width: 1.5rem;
-          background-color: red;
-          border-radius: 20px;
-          font-size: 1.2rem;
-          font-weight: bold; }
+        padding-right: 1rem; }
+      header section .carritoNavBar a span {
+        position: absolute;
+        text-align: center;
+        transform: translate(-0.5rem, -0.2rem);
+        background-color: red;
+        border-radius: 20px;
+        font-weight: bold; }
       header section .carritoNavBar ul {
         visibility: hidden;
         position: absolute;
@@ -68,21 +63,11 @@ header {
           padding: 0.5rem 0;
           width: 100%;
           cursor: pointer; }
-    header section .carritoNavBar:hover ul {
-      transition: all 0.5s;
-      transition-delay: 0.4s;
-      visibility: visible;
-      background-color: rgba(255, 255, 255, 0.75); }
-    header section .carritoNavBar:hover i {
-      transform: rotate(180deg); }
-    header section .carritoNavBar:hover span {
-      display: none; }
     header section a:hover {
       color: white;
       list-style: none;
       text-decoration: none; }
   header h2 {
-    font-size: 3rem;
     text-align: center;
     padding: 1rem;
     margin: 0;
@@ -153,33 +138,64 @@ header {
   display: block; }
 
 @media (max-width: 991.98px) {
-  .toggle-button {
-    display: flex; }
-  .navBar {
+  header h2 {
+    font-size: 2rem;
+    padding: 0.5rem 0; }
+  header .carritoNavBar a > i {
+    font-size: 2.2rem; }
+    header .carritoNavBar a > i span {
+      height: 1rem;
+      width: auto;
+      min-width: 1rem;
+      font-size: 0.8rem; }
+  header .navBar {
     flex-direction: column;
     justify-content: left; }
-    .navBar li {
+    header .navBar li {
       text-align: center;
-      display: none; }
-      .navBar li ul {
+      display: none;
+      font-size: 0.8; }
+      header .navBar li ul {
         position: relative;
         display: none; }
+  .toggle-button {
+    display: flex; }
   .botonOcultarNav {
     display: none; } }
 
 @media (min-width: 992px) {
-  .navBar {
+  header h2 {
+    font-size: 3rem;
+    padding: 1rem 0; }
+  header .carritoNavBar a > i {
+    font-size: 3rem;
+    transition: all 0.6s; }
+    header .carritoNavBar a > i span {
+      height: 1.5rem;
+      width: auto;
+      min-width: 1.5rem;
+      font-size: 1.2rem; }
+  header .carritoNavBar:hover ul {
+    transition: all 0.5s;
+    transition-delay: 0.4s;
+    visibility: visible;
+    background-color: rgba(255, 255, 255, 0.75); }
+  header .carritoNavBar:hover i {
+    transform: rotate(180deg); }
+  header .carritoNavBar:hover span {
+    display: none; }
+  header .navBar {
     flex-direction: row;
     justify-content: center; }
-    .navBar li ul {
+    header .navBar li ul {
       position: absolute;
       max-height: 0; }
-    .navBar li:hover {
+    header .navBar li:hover {
       background-color: white;
       color: black; }
-      .navBar li:hover > a {
+      header .navBar li:hover > a {
         color: black; }
-      .navBar li:hover ul {
+      header .navBar li:hover ul {
         max-height: 400px;
         transition: 1s ease-in-out; }
   .botonOcultarNav {
@@ -389,7 +405,6 @@ main #mains {
   border-radius: 5px; }
   #cart .elementoCarrito {
     display: grid;
-    grid-template-columns: 22% 35% 35% 8%;
     align-items: center;
     background-color: #2b2b2b;
     height: 10rem;
@@ -398,12 +413,10 @@ main #mains {
       padding: 0.5rem; }
     #cart .elementoCarrito > p {
       margin: 0;
-      padding-right: 1rem;
       text-align: center; }
     #cart .elementoCarrito span {
       display: flex;
-      flex-direction: column;
-      padding-left: 3rem; }
+      flex-direction: column; }
       #cart .elementoCarrito span p {
         margin-bottom: 0.5rem; }
     #cart .elementoCarrito button {
@@ -418,7 +431,6 @@ main #mains {
   #cart > :last-child {
     border-top: none; }
     #cart > :last-child p {
-      font-size: 2rem;
       text-align: center;
       margin: 0;
       background-color: #2b2b2b; }
@@ -428,6 +440,34 @@ main #mains {
       #cart > :last-child div button {
         width: 100%;
         border-radius: 0; }
+
+@media (max-width: 991.98px) {
+  #cart p {
+    font-size: 0.8rem; }
+  #cart i {
+    font-size: 1.1rem; }
+  #cart > :last-child p {
+    font-size: 1.5rem; }
+  #cart .elementoCarrito {
+    grid-template-columns: 40% 25% 25% 10%; }
+    #cart .elementoCarrito span {
+      padding-left: 0.5rem; }
+    #cart .elementoCarrito > p {
+      padding-right: 0.2rem; } }
+
+@media (min-width: 992px) {
+  #cart p {
+    font-size: 1.2rem; }
+  #cart i {
+    font-size: 1.5rem; }
+  #cart > :last-child p {
+    font-size: 2rem; }
+  #cart .elementoCarrito {
+    grid-template-columns: 22% 35% 35% 8%; }
+    #cart .elementoCarrito span {
+      padding-left: 3rem; }
+    #cart .elementoCarrito > p {
+      padding-right: 1rem; } }
 
 footer {
   background-color: #770018; }

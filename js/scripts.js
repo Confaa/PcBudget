@@ -190,8 +190,7 @@ function calcularTotal(carritoProductos) {
 
     for (let i = 0; i < carritoProductos.length; i++) {
         totalCompra += Number(
-            carritoProductos[i].productoEnCarrito.precio *
-                carritoProductos[i].cantidad
+            carritoProductos[i].productoEnCarrito.precio * carritoProductos[i].cantidad
         );
     }
     totalCompra = totalCompra.toFixed(2);
@@ -209,9 +208,7 @@ function cantidadProductosCarrito(carritoProductos) {
     }
     $(".carritoNavBar i span").remove();
     $(".carritoNavBar i").append("<span>" + cantidadProductos + "</span>");
-    $(".carritoNavBar i span").addClass(
-        "animate__animated animate__fadeIn animate__fast"
-    );
+    $(".carritoNavBar i span").addClass("animate__animated animate__fadeIn animate__fast");
 }
 
 /* let crearProducto = (producto) => {

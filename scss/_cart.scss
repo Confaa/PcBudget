@@ -5,7 +5,7 @@
     border-radius: 5px;
     .elementoCarrito {
         display: grid;
-        grid-template-columns: 22% 35% 35% 8%;
+
         align-items: center;
         background-color: $fondoProductos;
         height: 10rem;
@@ -16,13 +16,11 @@
         }
         > p {
             margin: 0;
-            padding-right: 1rem;
             text-align: center;
         }
         span {
             display: flex;
             flex-direction: column;
-            padding-left: 3rem;
             p {
                 margin-bottom: 0.5rem;
             }
@@ -43,7 +41,6 @@
     > :last-child {
         border-top: none;
         p {
-            font-size: 2rem;
             text-align: center;
             margin: 0;
             background-color: $fondoProductos;
@@ -54,6 +51,54 @@
             button {
                 width: 100%;
                 border-radius: 0;
+            }
+        }
+    }
+}
+@include media-breakpoint-between(xs, lg) {
+    #cart {
+        p {
+            font-size: 0.8rem;
+        }
+        i {
+            font-size: 1.1rem;
+        }
+        > :last-child {
+            p {
+                font-size: 1.5rem;
+            }
+        }
+        .elementoCarrito {
+            grid-template-columns: 40% 25% 25% 10%;
+            span {
+                padding-left: 0.5rem;
+            }
+            > p {
+                padding-right: 0.2rem;
+            }
+        }
+    }
+}
+@include media-breakpoint-up(lg) {
+    #cart {
+        p {
+            font-size: 1.2rem;
+        }
+        i {
+            font-size: 1.5rem;
+        }
+        > :last-child {
+            p {
+                font-size: 2rem;
+            }
+        }
+        .elementoCarrito {
+            grid-template-columns: 22% 35% 35% 8%;
+            span {
+                padding-left: 3rem;
+            }
+            > p {
+                padding-right: 1rem;
             }
         }
     }
