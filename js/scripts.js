@@ -322,3 +322,7 @@ function desplegableMobile(botones) {
     }
 }
 desplegableMobile(dropdownNavMobile);
+
+let cort = () => {
+    $("body >div").removeClass("cortina");
+};

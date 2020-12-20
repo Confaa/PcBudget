@@ -189,6 +189,35 @@ header {
   .botonOcultarNav {
     display: flex; } }
 
+.aux {
+  min-height: 0vh;
+  transition: 0.5s all linear;
+  transition-delay: 0.5s; }
+  .aux button {
+    display: none; }
+  .aux h1 {
+    display: none; }
+  .aux p {
+    display: none; }
+
+.cortina {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: white;
+  position: fixed;
+  z-index: 99999999999; }
+  .cortina button {
+    display: block; }
+  .cortina h1 {
+    display: block; }
+  .cortina p {
+    display: block; }
+
 main #index .indexNav {
   display: grid;
   justify-content: center;

@@ -1,6 +1,43 @@
 @import "colors";
 @import "mixins";
 
+.aux {
+    min-height: 0vh;
+    transition: 0.5s all linear;
+    transition-delay: 0.5s;
+    button {
+        display: none;
+    }
+    h1 {
+        display: none;
+    }
+    p {
+        display: none;
+    }
+}
+
+.cortina {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: white;
+    position: fixed;
+    z-index: 99999999999;
+    button {
+        display: block;
+    }
+    h1 {
+        display: block;
+    }
+    p {
+        display: block;
+    }
+}
+
 main {
     #index {
         .indexNav {
